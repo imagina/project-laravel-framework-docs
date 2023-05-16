@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[1471],{2286:a=>{a.exports=JSON.parse('{"label":"hola","permalink":"/project-laravel-framework-docs/es/blog/tags/hola","allTagsPath":"/project-laravel-framework-docs/es/blog/tags","count":1}')}}]);

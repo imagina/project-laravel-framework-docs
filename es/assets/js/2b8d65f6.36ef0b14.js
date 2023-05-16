@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[898],{5917:a=>{a.exports=JSON.parse('{"label":"docusaurus","permalink":"/project-laravel-framework-docs/es/blog/tags/docusaurus","allTagsPath":"/project-laravel-framework-docs/es/blog/tags","count":4}')}}]);
