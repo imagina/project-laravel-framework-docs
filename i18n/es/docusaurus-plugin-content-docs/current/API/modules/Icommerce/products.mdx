@@ -1,0 +1,510 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Productos
+
+Para utilizar el endpoint de productos y gestionar productos en la aplicación, debes acceder a la siguiente ruta: `<Tu-Dominio>/api/icommerce/v3/products`.
+
+[//]: # (<tr>)
+
+[//]: # (  <td>parent_id</td>)
+
+[//]: # (  <td>)
+
+[//]: # (    <i class="colorGraySpan">Tipo:</i>)
+
+[//]: # (    <br />)
+
+[//]: # (    <code>Integer</code>)
+
+[//]: # (    <br />)
+
+[//]: # (    <i class="colorGraySpan">Descripción:</i>)
+
+[//]: # (    <br />)
+
+[//]: # (    <p>Identificación del producto padre.</p>)
+
+[//]: # (  </td>)
+
+[//]: # (</tr>)
+
+[//]: # (<tr>)
+
+[//]: # (  <td>tax_class_id</td>)
+
+[//]: # (  <td>)
+
+[//]: # (    <i class="colorGraySpan">Tipo:</i>)
+
+[//]: # (    <br />)
+
+[//]: # (    <code>Integer</code>)
+
+[//]: # (    <br />)
+
+[//]: # (    <i class="colorGraySpan">Descripción:</i>)
+
+[//]: # (    <br />)
+
+[//]: # (    <p>Identificación de la clase de impuestos aplicada al elemento.</p>)
+
+[//]: # (  </td>)
+
+[//]: # (</tr>)
+
+[//]: # (<tr>)
+
+[//]: # (  <td>minimum</td>)
+
+[//]: # (  <td>)
+
+[//]: # (    <i class="colorGraySpan">Tipo:</i>)
+
+[//]: # (    <br />)
+
+[//]: # (    <code>Integer</code>)
+
+[//]: # (    <br />)
+
+[//]: # (    <i class="colorGraySpan">Descripción:</i>)
+
+[//]: # (    <br />)
+
+[//]: # (    <p>Cantidad mínima permitida para comprar el elemento.</p>)
+
+[//]: # (  </td>)
+
+[//]: # (</tr>)
+
+## Características
+<Tabs>
+  <TabItem value="fields" label="Campos" default>
+    <table>
+      <tr>
+        <td>id</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Integer</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Esta es la identificación única del producto, se genera automaticamente, cada que se crea.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>sku</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Varchar</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Esta es la identificación del producto, es usado en la sincronización masiva, además del ID.</p>
+          <p>Longitud máxima de 191 caracteres.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>added_by_id</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Integer</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Identificación del usuario que agregó este elemento.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>options</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Text</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Opciones asociadas al elemento.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>status</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Boolean (0 | 1)</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Estado del producto: Inactivo <code>0</code> o Activo <code>1</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>category_id</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Integer</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Identificación de la categoría a la que pertenece el producto.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>quantity</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Integer</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Cantidad disponible del producto en el inventario.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>stock_status</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Boolean (0 | 1)</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Estado de la existencia del producto: Agotado <code>0</code> o Disponible <code>1</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>manufacturer_id</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Integer</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Identificación del fabricante del producto.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>shipping</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Boolean (0 | 1)</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Indica si el producto se puede enviar: No <code>0</code> o Si <code>1</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>subtract</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Boolean (0 | 1)</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Indica si se resta la cantidad en stock cuando se realiza una venta: No <code>0</code> o Si <code>1</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>featured</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Boolean (0 | 1)</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Indica si el producto es destacado: No <code>0</code> o Si <code>1</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>freeshipping</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Boolean (0 | 1)</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Indica si el envio del producto es gratuito: No <code>0</code> o Si <code>1</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>is_call</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Boolean (0 | 1)</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Indica si se puede cotizar el producto: No <code>0</code> o Si <code>1</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>show_price_is_call</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Boolean (0 | 1)</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Indica si se debe mostrar el precio del producto: No <code>0</code> o Si <code>1</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>price</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>double(30,2)</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Precio del producto.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>points</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Integer</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>
+            Puntos asociados al producto.
+            <br/>
+            Funciona de la mano con el modulo de puntos(este modulo es adicional) para gestionar redención de premios.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>date_available</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Fecha</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Fecha en que el producto estará disponible.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>weight</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>double(8,2)</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Peso del producto.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>length</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>double(8,2)</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Longitud del producto.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>width</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>double(8,2)</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Ancho del producto.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>height</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>double(8,2)</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Altura del producto.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>reference</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Varchar</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Referencia asociada al producto.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>name</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Text</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Nombre del producto. Es traducible.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>sort_order</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Integer</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Orden de clasificación del producto.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>custom_url</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Varchar</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>URL personalizada o amigable asignada al producto.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>description</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Text</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Descripción detallada del producto. Es traducible.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>summary</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Text</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Resumen del producto. Es traducible.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>slug</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Varchar</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Slug o URL amigable para el producto. Es traducible.</p>
+          <b>Limite de 191 caracteres.</b>
+        </td>
+      </tr>
+      <tr>
+        <td>meta_title</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Varchar</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Título meta para el producto. Es traducible.</p>
+          <b>Limite de 191 caracteres.</b>
+        </td>
+      </tr>
+      <tr>
+        <td>meta_description</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Text</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Descripción meta para el producto. Es traducible</p>
+          <b>Limite de 191 caracteres.</b>
+        </td>
+      </tr>
+      <tr>
+        <td>advanced_summary</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>Text</code>
+          <br/>
+          <i class="colorGraySpan">Descripción:</i>
+          <br/>
+          <p>Resumen avanzado del producto. Es traducible</p>
+        </td>
+      </tr>
+    </table>
+  </TabItem>
+  <TabItem value="crud" label="CRUD">
+    <p>Aca puedes visualizar las acciones que puedes hacer al endpoint</p>
+    <table>
+      <tr>
+        <td>Crear</td>
+        <td>
+          <i class="colorGraySpan">Tipo:</i>
+          <br/>
+          <code>POST</code>
+          <br/>
+          <i class="colorGraySpan">Uso:</i>
+          <br/>
+          <p>Para crear un nuevo producto, envía una solicitud <code>POST</code> a la ruta mencionada anteriormente. Debes
+            incluir los siguientes campos necesarios en el cuerpo de la solicitud:</p>
+          <pre>
+            <code>
+              function MyComponent() &#123;
+              return (
+              &lt;div&gt;
+              &lt;h1&gt;Hello, World!&lt;/h1&gt;
+              &lt;/div&gt;
+              );
+              &#125;
+            </code>
+          </pre>
+        </td>
+      </tr>
+    </table>
+  </TabItem>
+</Tabs>
+
+Si necesitas asistencia adicional o tienes alguna pregunta sobre cómo completar estos campos, no dudes en ponerte en contacto con nuestro equipo de soporte.
