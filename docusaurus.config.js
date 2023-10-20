@@ -86,11 +86,17 @@ const config = {
           src: 'img/logo.png',
         },
         items: [
-          {
+          /*{
             type: 'docSidebar',
             sidebarId: 'LaravelSidebar',
             position: 'left',
             label: 'Laravel',
+          },*/
+          {
+            type: 'docSidebar',
+            sidebarId: 'APISidebar',
+            position: 'left',
+            label: 'API',
           },
           {
             type: 'localeDropdown',
