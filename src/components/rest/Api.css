@@ -1,0 +1,28 @@
+.border {
+    padding: 0.75rem;
+    border: 1px solid rgb(156 163 175);
+    border-radius: 0.375rem;
+}
+span.method {
+    border-radius: 10px;
+    padding: 0 10px;
+    color: white;
+    font-size: 11px;
+    justify-self: center;
+}
+
+span.method.DELETE {
+    background-color: #cc0000;
+}
+
+span.method.GET {
+    background-color: #278527;
+}
+
+span.method.POST {
+    background-color: #0066ff;
+}
+
+span.method.PUT {
+    background-color: #e0620d;
+}
