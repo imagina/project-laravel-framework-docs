@@ -16,7 +16,7 @@
     "description": "The label for category Tutorials in sidebar LaravelSidebar"
   },
   "sidebar.LaravelSidebar.category.Installation": {
-    "message": "Installation",
+    "message": "Instalación",
     "description": "The label for category Installation in sidebar LaravelSidebar"
   },
   "sidebar.LaravelSidebar.category.Guides": {
