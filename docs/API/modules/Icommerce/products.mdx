@@ -1,38 +1,36 @@
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+# Products
 
-# Productos
-
-Usa la REST API para interacturar con los productos en la aplicación.
+Use the REST API to interact with the products in the application.
 
 :::info
-Recuerda que para algunas peticiones requieres de enviar el token de autenticación.
+Remember that for some requests, you need to send the authentication token.
 
 `Header Parameters`
+
 ```json
 {
   "Authorization": "Bearer ...token..."
 }
 ```
-Y los parametros de consulta son los siguientes:
+And the query parameters are as follows:
 
 `Query Parameters`
+
 ```json
 {
   "setting": {
-    "timezone":"America/Bogota",
-    "fromAdmin":true,
-    "appMode":"iadmin",
-    "authProvider":"local",
-    "locale":"es"
+    "timezone": "America/Bogota",
+    "fromAdmin": true,
+    "appMode": "iadmin",
+    "authProvider": "local",
+    "locale": "es"
   }
 }
 ```
 :::
 
-##  Crear un producto
-
-Usa este endpoint para crear un producto.
+## Create a Product
+Use this endpoint to create a product.
 
 import Api from '@site/src/components/rest/Api';
 
@@ -41,12 +39,12 @@ import Api from '@site/src/components/rest/Api';
   url="/api/icommerce/v3/products"
   minimum={`{
   "attributes": {
-    "category_id": "2", //Este Id es la identificaciÃ³n de las catergorias
-    "es": { //Este depende del idiomar del servidor
+    "category_id": "2", // This Id is the identification of the categories
+    "es": { // This depends on the server's language
       "name": "Test",
       "slug": "test",
-      "summary": "Resumen",
-      "description": "Descripcion" //Puedes usar html para este campo
+      "summary": "Summary",
+      "description": "Description" // You can use HTML for this field
     }
   }
 }`}
@@ -109,8 +107,8 @@ import Api from '@site/src/components/rest/Api';
     "es": {
       "name": "Test 20",
       "slug": "test-20",
-      "summary": "Resumen",
-      "description": "Descripcion",
+      "summary": "Summary",
+      "description": "Description",
       "meta_title": "test",
       "meta_description": "test"
     }
@@ -121,11 +119,11 @@ import Api from '@site/src/components/rest/Api';
       "id": 1,
       "name": "Test",
       "slug": "test",
-      "summary": "Resumen",
+      "summary": "Summary",
       "metaTitle": "",
       "metaDescription": "",
       "formattedPrice": "$0",
-      "description": "Descripcion",
+      "description": "Description",
       "createdAt": "2023-10-21 11:59:11",
       "updatedAt": "2023-10-21 11:59:11",
       "categoryId": 2,
@@ -227,7 +225,7 @@ import Api from '@site/src/components/rest/Api';
                   {
                       "name": "mediumThumb",
                       "path": "url/modules/icommerce/img/product/default.jpg?u=",
-                      "size": "600x"
+                  "size": "600x"
                   },
                   {
                       "name": "largeThumb",
@@ -315,16 +313,13 @@ import Api from '@site/src/components/rest/Api';
 />
 
 ---
-##  Modificar un producto
-
-Usa este endpoint para modificar un producto. Puedes enviar uno o varios valores en el request.
-
-Por defecto el valor que se acepta es el id, pero si quieres enviar otro valor, tienes que enviar en los `Query Parameters`:
+## Modify a Product
+Use this endpoint to modify a product. You can send one or multiple values in the request. By default, the accepted value is the ID, but if you want to send another value, you need to include the following in the `Query Parameters`:
 
 ```json
 {
   "filter": {
-    "field": "name" //Valor por el que se va a pasar la búsqueda
+    "field": "name" // The value by which the search will be conducted
   }
 }
 ```
@@ -395,8 +390,8 @@ Por defecto el valor que se acepta es el id, pero si quieres enviar otro valor, 
     "es": {
       "name": "Test 20",
       "slug": "test-20",
-      "summary": "Resumen",
-      "description": "Descripcion",
+      "summary": "Summary",
+      "description": "Description",
       "meta_title": "test",
       "meta_description": "test"
     }
@@ -407,13 +402,12 @@ Por defecto el valor que se acepta es el id, pero si quieres enviar otro valor, 
 }`}
 />
 
-----
-##  Obtener varios productos
+---
+## Get Multiple Products
 
-Usa este endpoint para obtener varios producto.
+Use this endpoint to retrieve multiple products. You can filter the products, paginate them, and include additional data such as associated categories.
 
-Puedes filtrar los productos, tambien paginarlos e incluir datos (Como si trae las categorias asociadas, o no)
-`Query Parameters`:
+`Query Parameters:`
 
 <Api
   method="GET"
@@ -425,8 +419,8 @@ Puedes filtrar los productos, tambien paginarlos e incluir datos (Como si trae l
       "way":"desc"
     }
   },
-  "page": 1, //Numero de pagina de productos
-  "take": 1, //Productos tomados
+  "page": 1, // Page number of products
+  "take": 1, // Number of products to retrieve
   "include": 'categories'
 }`}
   responseSample={`{
@@ -435,7 +429,7 @@ Puedes filtrar los productos, tambien paginarlos e incluir datos (Como si trae l
       "id": 1,
       "name": "Test",
       "slug": "test",
-      "summary": "Este es un test",
+      "summary": "This is a test",
       "metaTitle": "",
       "metaDescription": "",
       "options": {
@@ -449,7 +443,7 @@ Puedes filtrar los productos, tambien paginarlos e incluir datos (Como si trae l
       "dateAvailable": "2023-10-18",
       "subtract": true,
       "minimum": 1,
-      "description": "No se que mas colocar",
+      "description": "I don't know what else to add",
       "createdAt": "2023-10-18 19:42:46",
       "updatedAt": "2023-10-18 19:49:50",
       "status": 1,
@@ -457,18 +451,18 @@ Puedes filtrar los productos, tambien paginarlos e incluir datos (Como si trae l
       "categoryId": 4,
       "category": {
         "id": 4,
-        "title": "Mundo 1",
+        "title": "World 1",
         "h1Title": "",
-        "slug": "mundo-1",
+        "slug": "world-1",
         "url": "...",
         "newUrl": "...",
-        "description": "Mundo 1",
+        "description": "World 1",
         "parentId": 0,
         "showMenu": false,
         "featured": false,
         "sortOrder": "0",
-        "metaTitle": "Mundo 1",
-        "metaDescription": "Mundo 1",
+        "metaTitle": "World 1",
+        "metaDescription": "World 1",
         "options": {
           "masterRecord": "0",
           "view": "1",
@@ -709,16 +703,16 @@ Puedes filtrar los productos, tambien paginarlos e incluir datos (Como si trae l
 }`}
 />
 
-----
-##  Obtener un producto
+---
+## Get a Specific Product
 
-Usa este endpoint para obtener un producto en especifico.
+Use this endpoint to retrieve a specific product.
 
-<Api
-  method="GET"
-  url="/api/icommerce/v3/products/{criteria}"
-  request={`{}`}
-  responseSample={`{
+  <Api
+    method="GET"
+    url="/api/icommerce/v3/products/{criteria}"
+    request={`{}`}
+    responseSample={`{
   "data": {
       "id": 1,
       "name": "Test",
@@ -733,7 +727,7 @@ Usa este endpoint para obtener un producto en especifico.
       "categoryId": 2,
       "categories": [
          {
-            "id":1,
+            "id": 1,
             "title": "categoria",
             "h1Title": "",
             "slug": "categoria",
@@ -743,19 +737,19 @@ Usa este endpoint para obtener un producto en especifico.
             "parentId": 0,
             "showMenu": false,
             "featured": false,
-            "sortOrder":"0",
+            "sortOrder": "0",
             "metaTitle": "categoria",
             "metaDescription": "categoria",
             "options": {
               "masterRecord": "0",
-              "view":"1",
-              "descriptionIndex":null
+              "view": "1",
+              "descriptionIndex": null
             },
             "createdAt": "2023-05-15 16:49:00",
-            "updatedAt":"2023-09-21 08:50:13",
-            "status":"1",
-            "mediaFiles":{...},
-            "layoutId":null
+            "updatedAt": "2023-09-21 08:50:13",
+            "status": "1",
+            "mediaFiles": {...},
+            "layoutId": null
          }
       ],
       "storeId": null,
@@ -877,61 +871,6 @@ Usa este endpoint para obtener un producto en especifico.
               "relativeLargeThumb": "//modules/icommerce/img/product/default.jpg?u=",
               "extraLargeThumb": "url/modules/icommerce/img/product/default.jpg?u=",
               "relativeExtraLargeThumb": "//modules/icommerce/img/product/default.jpg?u="
-          },
-          "quaternaryimage": {
-              "id": null,
-              "filename": null,
-              "mimeType": null,
-              "fileSize": null,
-              "path": "url/modules/icommerce/img/product/default.jpg?u=",
-              "relativePath": "url/modules/icommerce/img/product/default.jpg",
-              "isImage": true,
-              "isVideo": false,
-              "isFolder": false,
-              "mediaType": false,
-              "folderId": null,
-              "description": null,
-              "alt": null,
-              "keywords": null,
-              "createdBy": null,
-              "createdAt": null,
-              "updatedAt": null,
-              "faIcon": "fa-file",
-              "disk": null,
-              "extension": null,
-              "url": "url/modules/icommerce/img/product/default.jpg",
-              "createdByUser": null,
-              "tags": [],
-              "thumbnails": [
-                  {
-                      "name": "smallThumb",
-                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
-                      "size": "300x"
-                  },
-                  {
-                      "name": "mediumThumb",
-                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
-                      "size": "600x"
-                  },
-                  {
-                      "name": "largeThumb",
-                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
-                      "size": "900x"
-                  },
-                  {
-                      "name": "extraLargeThumb",
-                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
-                      "size": "1920x"
-                  }
-              ],
-              "smallThumb": "url/modules/icommerce/img/product/default.jpg?u=",
-              "relativeSmallThumb": "//modules/icommerce/img/product/default.jpg?u=",
-              "mediumThumb": "url/modules/icommerce/img/product/default.jpg?u=",
-              "relativeMediumThumb": "//modules/icommerce/img/product/default.jpg?u=",
-              "largeThumb": "url/modules/icommerce/img/product/default.jpg?u=",
-              "relativeLargeThumb": "//modules/icommerce/img/product/default.jpg?u=",
-              "extraLargeThumb": "url/modules/icommerce/img/product/default.jpg?u=",
-              "relativeExtraLargeThumb": "//modules/icommerce/img/product/default.jpg?u="
           }
       },
       "isNew": true,
@@ -943,419 +882,415 @@ Usa este endpoint para obtener un producto en especifico.
 }`}
 />
 
-----
-##  Eliminar un producto
+---
+## Delete a Product
+Use this endpoint to delete a specific product by sending the product's ID.
 
-Usa este endpoint para eliminar un producto en especifico.
-
-Envia el id del producto, para eliminarlo.
-
-<Api
-  method="DELETE"
-  url="/api/icommerce/v3/products/{id}"
-  request={`{}`}
-  responseSample={`{
+  <Api
+    method="DELETE"
+    url="/api/icommerce/v3/products/{id}"
+    request={`{}`}
+    responseSample={`{
   "data": "Request successful"
 }`}
-/>
+  />
 
 ----
-
 ## Product Fields
+
 <table>
   <tr>
     <td>id</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Integer</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Esta es la identificación única del producto, se genera automaticamente, cada que se crea.</p>
+      <p>This is the unique identification of the product, automatically generated each time it is created.</p>
     </td>
   </tr>
   <tr>
     <td>sku</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Varchar</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Esta es la identificación del producto, es usado en la sincronización masiva, además del ID.</p>
-      <p>Longitud máxima de 191 caracteres.</p>
+      <p>This is the product identification used in bulk synchronization, in addition to the ID.</p>
+      <p>Maximum length of 191 characters.</p>
     </td>
   </tr>
   <tr>
     <td>added_by_id</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Integer</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Identificación del usuario que agregó este elemento.</p>
+      <p>Identification of the user who added this item.</p>
     </td>
   </tr>
   <tr>
     <td>options</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Text</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Opciones asociadas al elemento.</p>
+      <p>Options associated with the item.</p>
     </td>
   </tr>
   <tr>
     <td>status</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Boolean (0 | 1)</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Estado del producto: Inactivo <code>0</code> o Activo <code>1</code>.</p>
+      <p>Product status: Inactive <code>0</code> or Active <code>1</code>.</p>
     </td>
   </tr>
   <tr>
     <td>category_id</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Integer</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Identificación de la categoría a la que pertenece el producto.</p>
+      <p>Identification of the category to which the product belongs.</p>
     </td>
   </tr>
   <tr>
     <td>quantity</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Integer</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Cantidad disponible del producto en el inventario.</p>
+      <p>Available quantity of the product in inventory.</p>
     </td>
   </tr>
   <tr>
     <td>stock_status</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Boolean (0 | 1)</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Estado de la existencia del producto: Agotado <code>0</code> o Disponible <code>1</code>.</p>
+      <p>Product stock status: Out of stock <code>0</code> or Available <code>1</code>.</p>
     </td>
   </tr>
   <tr>
     <td>manufacturer_id</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Integer</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Identificación del fabricante del producto.</p>
+      <p>Identification of the product's manufacturer.</p>
     </td>
   </tr>
   <tr>
     <td>shipping</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Boolean (0 | 1)</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Indica si el producto se puede enviar: No <code>0</code> o Si <code>1</code>.</p>
+      <p>Indicates whether the product can be shipped: No <code>0</code> or Yes <code>1</code>.</p>
     </td>
   </tr>
   <tr>
     <td>subtract</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Boolean (0 | 1)</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Indica si se resta la cantidad en stock cuando se realiza una venta: No <code>0</code> o Si <code>1</code>.
-      </p>
+      <p>Indicates whether the stock quantity is reduced when a sale is made: No <code>0</code> or Yes <code>1</code>.</p>
     </td>
   </tr>
   <tr>
     <td>featured</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Boolean (0 | 1)</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Indica si el producto es destacado: No <code>0</code> o Si <code>1</code>.</p>
+      <p>Indicates whether the product is featured: No <code>0</code> or Yes <code>1</code>.</p>
     </td>
   </tr>
   <tr>
     <td>freeshipping</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Boolean (0 | 1)</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Indica si el envio del producto es gratuito: No <code>0</code> o Si <code>1</code>.</p>
+      <p>Indicates whether the product's shipping is free: No <code>0</code> or Yes <code>1</code>.</p>
     </td>
   </tr>
   <tr>
     <td>is_call</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Boolean (0 | 1)</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Indica si se puede cotizar el producto: No <code>0</code> o Si <code>1</code>.</p>
+      <p>Indicates whether the product can be quoted: No <code>0</code> or Yes <code>1</code>.</p>
     </td>
   </tr>
   <tr>
     <td>show_price_is_call</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Boolean (0 | 1)</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Indica si se debe mostrar el precio del producto: No <code>0</code> o Si <code>1</code>.</p>
+      <p>Indicates whether the product's price should be displayed: No <code>0</code> or Yes <code>1</code>.</p>
     </td>
   </tr>
   <tr>
     <td>price</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>double(30,2)</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Precio del producto.</p>
+      <p>Product price.</p>
     </td>
   </tr>
   <tr>
     <td>points</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Integer</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
       <p>
-        Puntos asociados al producto.
+        Points associated with the product.
         <br/>
-        Funciona de la mano con el modulo de puntos(este modulo es adicional) para gestionar redención de premios.
+        Works in conjunction with the points module (this module is additional) to manage reward redemption.
       </p>
     </td>
   </tr>
   <tr>
     <td>date_available</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
-      <code>Fecha</code>
+      <code>Date</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Fecha en que el producto estará disponible.</p>
+      <p>Date when the product will be available.</p>
     </td>
   </tr>
   <tr>
     <td>weight</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>double(8,2)</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Peso del producto.</p>
+      <p>Product weight.</p>
     </td>
   </tr>
   <tr>
     <td>length</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>double(8,2)</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Longitud del producto.</p>
+      <p>Product length.</p>
     </td>
   </tr>
   <tr>
     <td>width</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>double(8,2)</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Ancho del producto.</p>
+      <p>Product width.</p>
     </td>
   </tr>
   <tr>
     <td>height</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>double(8,2)</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Altura del producto.</p>
+      <p>Product height.</p>
     </td>
   </tr>
   <tr>
     <td>reference</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Varchar</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Referencia asociada al producto.</p>
+      <p>Reference associated with the product.</p>
     </td>
   </tr>
   <tr>
     <td>name</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Text</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Nombre del producto. Es traducible.</p>
+      <p>Product name. Translatable.</p>
     </td>
   </tr>
   <tr>
     <td>sort_order</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Integer</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Orden de clasificación del producto.</p>
+      <p>Product sorting order.</p>
     </td>
   </tr>
   <tr>
     <td>custom_url</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Varchar</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>URL personalizada o amigable asignada al producto.</p>
+      <p>Custom or friendly URL assigned to the product.</p>
     </td>
   </tr>
   <tr>
     <td>description</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Text</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Descripción detallada del producto. Es traducible.</p>
+      <p>Detailed product description. Translatable.</p>
     </td>
   </tr>
   <tr>
     <td>summary</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Text</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Resumen del producto. Es traducible.</p>
+      <p>Product summary. Translatable.</p>
     </td>
   </tr>
   <tr>
     <td>slug</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Varchar</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Slug o URL amigable para el producto. Es traducible.</p>
-      <b>Limite de 191 caracteres.</b>
+      <p>Friendly URL or slug for the product. Translatable.</p>
+      <b>Limit of 191 characters.</b>
     </td>
   </tr>
   <tr>
     <td>meta_title</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Varchar</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Título meta para el producto. Es traducible.</p>
-      <b>Limite de 191 caracteres.</b>
+      <p>Meta title for the product. Translatable.</p>
+      <b>Limit of 191 characters.</b>
     </td>
   </tr>
   <tr>
     <td>meta_description</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Text</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Descripción meta para el producto. Es traducible</p>
-      <b>Limite de 191 caracteres.</b>
+      <p>Meta description for the product. Translatable.</p>
+      <b>Limit of 191 characters.</b>
     </td>
   </tr>
   <tr>
     <td>advanced_summary</td>
     <td>
-      <i class="colorGraySpan">Tipo:</i>
+      <i class="colorGraySpan">Type:</i>
       <br/>
       <code>Text</code>
       <br/>
-      <i class="colorGraySpan">Descripción:</i>
+      <i class="colorGraySpan">Description:</i>
       <br/>
-      <p>Resumen avanzado del producto. Es traducible</p>
+      <p>Advanced product summary. Translatable.</p>
     </td>
   </tr>
 </table>
 
-Si necesitas asistencia adicional o tienes alguna pregunta sobre cómo completar estos campos, no dudes en ponerte en contacto con nuestro equipo de soporte.
+If you need further assistance or have any questions about how to fill out these fields, please don't hesitate to contact our support team.
