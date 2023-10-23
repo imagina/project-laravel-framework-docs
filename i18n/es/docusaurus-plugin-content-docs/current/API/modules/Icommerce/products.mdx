@@ -1,0 +1,1255 @@
+---
+sidebar_position: 2
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Productos
+
+Usa la REST API para interacturar con los productos en la aplicación.
+
+:::info
+Recuerda que para algunas peticiones requieres de enviar el token de autenticación.
+
+`Header Parameters`
+```json
+{
+  "Authorization": "Bearer ...token..."
+}
+```
+Y los parametros de consulta son los siguientes:
+
+`Query Parameters`
+```json
+{
+  "setting": {
+    "timezone":"America/Bogota",
+    "fromAdmin":true,
+    "appMode":"iadmin",
+    "authProvider":"local",
+    "locale":"es"
+  }
+}
+```
+:::
+
+##  Crear un producto
+
+Usa este endpoint para crear un producto.
+
+import Api from '@site/src/components/rest/Api';
+
+<Api
+  method="POST"
+  url="/api/icommerce/v3/products"
+  minimum={`{
+  "attributes": {
+    "category_id": "2", //Este Id es la identificaciÃ³n de las catergorias
+    "es": { //Este depende del idioma del servidor
+      "name": "Test",
+      "slug": "test",
+      "summary": "Resumen",
+      "description": "Descripcion" //Puedes usar html para este campo
+    }
+  }
+}`}
+  request={`{
+  "attributes": {
+    "status": 1,
+    "category_id": "2",
+    "categories": [
+      "2"
+    ],
+    "sku": "SKU-15",
+    "quantity": 1,
+    "stock_status": 1,
+    "price": "1000",
+    "date_available": "2023/10/21",
+    "weight": 0,
+    "length": 0,
+    "width": 0,
+    "height": 0,
+    "minimum": 1,
+    "reference": "",
+    "shipping": true,
+    "show_price_is_call": "0",
+    "subtract": true,
+    "freeshipping": true,
+    "order_weight": 0,
+    "rating": 3,
+    "points": 0,
+    "related_products": [],
+    "product_options": [],
+    "price_lists": [],
+    "medias_single": {
+      "mainimage": 349
+    },
+    "medias_multi": {
+      "gallery": {
+        "files": [
+          335,
+          336,
+          342
+        ],
+        "orders": "335,336,342"
+      }
+    },
+    "manufacturer_id": "3",
+    "meta_title": "test",
+    "meta_description": "test",
+    "featured": "1",
+    "is_call": "0",
+    "sort_order": "0",
+    "item_type_id": 1,
+    "custom_url": "",
+    "es": {
+      "name": "Test 20",
+      "slug": "test-20",
+      "summary": "Resumen",
+      "description": "Descripcion",
+      "meta_title": "test",
+      "meta_description": "test"
+    }
+  }
+}`}
+  responseSample={`{
+  "data": {
+      "id": 1,
+      "name": "Test",
+      "slug": "test",
+      "summary": "Resumen",
+      "metaTitle": "",
+      "metaDescription": "",
+      "formattedPrice": "$0",
+      "description": "Descripcion",
+      "createdAt": "2023-10-21 11:59:11",
+      "updatedAt": "2023-10-21 11:59:11",
+      "categoryId": 2,
+      "storeId": null,
+      "featured": "0",
+      "sortOrder": "0",
+      "visible": 0,
+      "url": "url/tienda/p/test",
+      "isCall": "0",
+      "showPriceIsCall": "0",
+      "totalTaxes": 0,
+      "mediaFiles": {
+          "mainimage": {
+              "id": null,
+              "filename": null,
+              "mimeType": null,
+              "fileSize": null,
+              "path": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativePath": "url/modules/icommerce/img/product/default.jpg",
+              "isImage": true,
+              "isVideo": false,
+              "isFolder": false,
+              "mediaType": false,
+              "folderId": null,
+              "description": null,
+              "alt": null,
+              "keywords": null,
+              "createdBy": null,
+              "createdAt": null,
+              "updatedAt": null,
+              "faIcon": "fa-file",
+              "disk": null,
+              "extension": null,
+              "url": "url/modules/icommerce/img/product/default.jpg",
+              "createdByUser": null,
+              "tags": [],
+              "thumbnails": [
+                  {
+                      "name": "smallThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "300x"
+                  },
+                  {
+                      "name": "mediumThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "600x"
+                  },
+                  {
+                      "name": "largeThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "900x"
+                  },
+                  {
+                      "name": "extraLargeThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "1920x"
+                  }
+              ],
+              "smallThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeSmallThumb": "//modules/icommerce/img/product/default.jpg?u=",
+              "mediumThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeMediumThumb": "//modules/icommerce/img/product/default.jpg?u=",
+              "largeThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeLargeThumb": "//modules/icommerce/img/product/default.jpg?u=",
+              "extraLargeThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeExtraLargeThumb": "//modules/icommerce/img/product/default.jpg?u="
+          },
+          "gallery": [],
+          "secondaryimage": {
+              "id": null,
+              "filename": null,
+              "mimeType": null,
+              "fileSize": null,
+              "path": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativePath": "url/modules/icommerce/img/product/default.jpg",
+              "isImage": true,
+              "isVideo": false,
+              "isFolder": false,
+              "mediaType": false,
+              "folderId": null,
+              "description": null,
+              "alt": null,
+              "keywords": null,
+              "createdBy": null,
+              "createdAt": null,
+              "updatedAt": null,
+              "faIcon": "fa-file",
+              "disk": null,
+              "extension": null,
+              "url": "url/modules/icommerce/img/product/default.jpg",
+              "createdByUser": null,
+              "tags": [],
+              "thumbnails": [
+                  {
+                      "name": "smallThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "300x"
+                  },
+                  {
+                      "name": "mediumThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "600x"
+                  },
+                  {
+                      "name": "largeThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "900x"
+                  },
+                  {
+                      "name": "extraLargeThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "1920x"
+                  }
+              ],
+              "smallThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeSmallThumb": "//modules/icommerce/img/product/default.jpg?u=",
+              "mediumThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeMediumThumb": "//modules/icommerce/img/product/default.jpg?u=",
+              "largeThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeLargeThumb": "//modules/icommerce/img/product/default.jpg?u=",
+              "extraLargeThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeExtraLargeThumb": "//modules/icommerce/img/product/default.jpg?u="
+          },
+          "quaternaryimage": {
+              "id": null,
+              "filename": null,
+              "mimeType": null,
+              "fileSize": null,
+              "path": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativePath": "url/modules/icommerce/img/product/default.jpg",
+              "isImage": true,
+              "isVideo": false,
+              "isFolder": false,
+              "mediaType": false,
+              "folderId": null,
+              "description": null,
+              "alt": null,
+              "keywords": null,
+              "createdBy": null,
+              "createdAt": null,
+              "updatedAt": null,
+              "faIcon": "fa-file",
+              "disk": null,
+              "extension": null,
+              "url": "url/modules/icommerce/img/product/default.jpg",
+              "createdByUser": null,
+              "tags": [],
+              "thumbnails": [
+                  {
+                      "name": "smallThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "300x"
+                  },
+                  {
+                      "name": "mediumThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "600x"
+                  },
+                  {
+                      "name": "largeThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "900x"
+                  },
+                  {
+                      "name": "extraLargeThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "1920x"
+                  }
+              ],
+              "smallThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeSmallThumb": "//modules/icommerce/img/product/default.jpg?u=",
+              "mediumThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeMediumThumb": "//modules/icommerce/img/product/default.jpg?u=",
+              "largeThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeLargeThumb": "//modules/icommerce/img/product/default.jpg?u=",
+              "extraLargeThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeExtraLargeThumb": "//modules/icommerce/img/product/default.jpg?u="
+          }
+      },
+      "isNew": true,
+      "isAvailable": false,
+      "layoutId": null,
+      "isInternal": null,
+      "priceLists": []
+  }
+}`}
+/>
+
+---
+##  Modificar un producto
+
+Usa este endpoint para modificar un producto. Puedes enviar uno o varios valores en el request.
+
+Por defecto el valor que se acepta es el id, pero si quieres enviar otro valor, tienes que enviar en los `Query Parameters`:
+
+```json
+{
+  "filter": {
+    "field": "name" //Valor por el que se va a pasar la búsqueda
+  }
+}
+```
+
+<Api
+  method="PUT"
+  url="/api/icommerce/v3/products/{criteria}"
+  minimum={`{
+  "attributes": {
+    "category_id": "2"
+}`}
+  request={`{
+  "attributes": {
+    "status": 1,
+    "category_id": "2",
+    "categories": [
+      "2"
+    ],
+    "sku": "SKU-15",
+    "quantity": 1,
+    "stock_status": 1,
+    "price": "1000",
+    "date_available": "2023/10/21",
+    "weight": 0,
+    "length": 0,
+    "width": 0,
+    "height": 0,
+    "minimum": 1,
+    "reference": "",
+    "shipping": true,
+    "show_price_is_call": "0",
+    "subtract": true,
+    "freeshipping": true,
+    "order_weight": 0,
+    "rating": 3,
+    "points": 0,
+    "related_products": [],
+    "product_options": [],
+    "price_lists": [],
+    "medias_single": {
+      "mainimage": 349
+    },
+    "medias_multi": {
+      "gallery": {
+        "files": [
+          335,
+          336,
+          342
+        ],
+        "orders": "335,336,342"
+      }
+    },
+    "manufacturer_id": "3",
+    "meta_title": "test",
+    "meta_description": "test",
+    "featured": "1",
+    "is_call": "0",
+    "sort_order": "0",
+    "item_type_id": 1,
+    "custom_url": "",
+    "es": {
+      "name": "Test 20",
+      "slug": "test-20",
+      "summary": "Resumen",
+      "description": "Descripcion",
+      "meta_title": "test",
+      "meta_description": "test"
+    }
+  }
+}`}
+  responseSample={`{
+  "data": "Item Updated"
+}`}
+/>
+
+----
+##  Obtener varios productos
+
+Usa este endpoint para obtener varios producto.
+
+Puedes filtrar los productos, tambien paginarlos e incluir datos (Como si trae las categorias asociadas, o no)
+Los datos que se pueden incluir son:
+
+| Include | Descripción |
+|------------|--------------------------------------------|
+| categories | Trae las categorias asociadas al producto. |
+| manufacturer | Trae los datos del fabricante, asociado al producto. |
+| tags | Trae las etiquetas asociadas al producto. |
+
+`Query Parameters`:
+
+<Api
+  method="GET"
+  url="/api/icommerce/v3/products"
+  request={`{
+  "filter": {
+    "order": {
+      "field":"created_at",
+      "way":"desc"
+    }
+  },
+  "page": 1, //Numero de pagina de productos
+  "take": 1, //Productos tomados
+  "include": 'categories,manufacturer,tags'
+}`}
+  responseSample={`{
+  "data": [
+    {
+      "id": 1,
+      "name": "Test",
+      "slug": "test",
+      "summary": "Este es un test",
+      "metaTitle": "",
+      "metaDescription": "",
+      "options": {
+        "masterRecord": 0,
+        "video": null
+      },
+      "sku": "HYUNG",
+      "quantity": 5,
+      "price": 2000,
+      "formattedPrice": "$2,000",
+      "dateAvailable": "2023-10-18",
+      "subtract": true,
+      "minimum": 1,
+      "description": "No se que mas colocar",
+      "createdAt": "2023-10-18 19:42:46",
+      "updatedAt": "2023-10-18 19:49:50",
+      "status": 1,
+      "stockStatus": 1,
+      "categoryId": 4,
+      "category": {
+        "id": 4,
+        "title": "Mundo 1",
+        "h1Title": "",
+        "slug": "mundo-1",
+        "url": "...",
+        "newUrl": "...",
+        "description": "Mundo 1",
+        "parentId": 0,
+        "showMenu": false,
+        "featured": false,
+        "sortOrder": "0",
+        "metaTitle": "Mundo 1",
+        "metaDescription": "Mundo 1",
+        "options": {
+          "masterRecord": "0",
+          "view": "1",
+          "descriptionIndex": null
+        },
+        "createdAt": "2023-09-21 17:44:59",
+        "updatedAt": "2023-09-21 17:44:59",
+        "status": "1",
+        "mediaFiles": {
+          "mainimage": {
+            "id": null,
+            "filename": null,
+            "mimeType": null,
+            "fileSize": null,
+            "path": "...",
+            "relativePath": "...",
+            "isImage": true,
+            "isVideo": false,
+            "isFolder": false,
+            "mediaType": false,
+            "folderId": null,
+            "description": null,
+            "alt": null,
+            "keywords": null,
+            "createdBy": null,
+            "createdAt": null,
+            "updatedAt": null,
+            "faIcon": "fa-file",
+            "disk": null,
+            "extension": null,
+            "url": "..."
+          },
+          "secondaryimage": {
+            "id": null,
+            "filename": null,
+            "mimeType": null,
+            "fileSize": null,
+            "path": "...",
+            "relativePath": "...",
+            "isImage": true,
+            "isVideo": false,
+            "isFolder": false,
+            "mediaType": false,
+            "folderId": null,
+            "description": null,
+            "alt": null,
+            "keywords": null,
+            "createdBy": null,
+            "createdAt": null,
+            "updatedAt": null,
+            "faIcon": "fa-file",
+            "disk": null,
+            "extension": null,
+            "url": "..."
+          },
+          "quaternaryimage": {
+            "id": null,
+            "filename": null,
+            "mimeType": null,
+            "fileSize": null,
+            "path": "...",
+            "relativePath": "...",
+            "isImage": true,
+            "isVideo": false,
+            "isFolder": false,
+            "mediaType": false,
+            "folderId": null,
+            "description": null,
+            "alt": null,
+            "keywords": null,
+            "createdBy": null,
+            "createdAt": null,
+            "updatedAt": null,
+            "faIcon": "fa-file",
+            "disk": null,
+            "extension": null,
+            "url": "..."
+          },
+          "iconimage": {
+            "id": null,
+            "filename": null,
+            "mimeType": null,
+            "fileSize": null,
+            "path": "...",
+            "relativePath": "...",
+            "isImage": true,
+            "isVideo": false,
+            "isFolder": false,
+            "mediaType": false,
+            "folderId": null,
+            "description": null,
+            "alt": null,
+            "keywords": null,
+            "createdBy": null,
+            "createdAt": null,
+            "updatedAt": null,
+            "faIcon": "fa-file",
+            "disk": null,
+            "extension": null,
+            "url": "..."
+          },
+          "bannerindeximage": {
+            "id": null,
+            "filename": null,
+            "mimeType": null,
+            "fileSize": null,
+            "path": "...",
+            "relativePath": "...",
+            "isImage": true,
+            "isVideo": false,
+            "isFolder": false,
+            "mediaType": false,
+            "folderId": null,
+            "description": null,
+            "alt": null,
+            "keywords": null,
+            "createdBy": null,
+            "createdAt": null,
+            "updatedAt": null,
+            "faIcon": "fa-file",
+            "disk": null,
+            "extension": null,
+            "url": "..."
+          },
+          "carouselindeximage": [],
+          "carouseltopindeximages": []
+        },
+        "layoutId": null
+      },
+      "storeId": null,
+      "featured": "1",
+      "sortOrder": "0",
+      "visible": 1,
+      "url": "...",
+      "isCall": "0",
+      "showPriceIsCall": "0",
+      "totalTaxes": 0,
+      "manufacturerId": 3,
+      "mediaFiles": {
+        ...
+      },
+      "isNew": true,
+      "isAvailable": true,
+      "layoutId": null,
+      "isInternal": 0,
+      "advancedSummary": "Avanzado",
+      "priceLists": []
+    }
+  ],
+  "meta": {
+    "page": {
+      "total": 8,
+      "lastPage": 8,
+      "perPage": 1,
+      "currentPage": 1
+    }
+  }
+}`}
+/>
+
+----
+##  Obtener un producto
+
+Usa este endpoint para obtener un producto en especifico.
+
+<Api
+  method="GET"
+  url="/api/icommerce/v3/products/{criteria}"
+  request={`{}`}
+  responseSample={`{
+  "data": {
+      "id": 1,
+      "name": "Test",
+      "slug": "test",
+      "summary": "Resumen",
+      "metaTitle": "",
+      "metaDescription": "",
+      "formattedPrice": "$0",
+      "description": "Descripcion",
+      "createdAt": "2023-10-21 11:59:11",
+      "updatedAt": "2023-10-21 11:59:11",
+      "categoryId": 2,
+      "categories": [
+         {
+            "id":1,
+            "title": "categoria",
+            "h1Title": "",
+            "slug": "categoria",
+            "url": "",
+            "newUrl": "",
+            "description": "categoria",
+            "parentId": 0,
+            "showMenu": false,
+            "featured": false,
+            "sortOrder":"0",
+            "metaTitle": "categoria",
+            "metaDescription": "categoria",
+            "options": {
+              "masterRecord": "0",
+              "view":"1",
+              "descriptionIndex":null
+            },
+            "createdAt": "2023-05-15 16:49:00",
+            "updatedAt":"2023-09-21 08:50:13",
+            "status":"1",
+            "mediaFiles":{...},
+            "layoutId":null
+         }
+      ],
+      "storeId": null,
+      "featured": "0",
+      "sortOrder": "0",
+      "visible": 0,
+      "url": "url/tienda/p/test",
+      "isCall": "0",
+      "showPriceIsCall": "0",
+      "totalTaxes": 0,
+      "mediaFiles": {
+          "mainimage": {
+              "id": null,
+              "filename": null,
+              "mimeType": null,
+              "fileSize": null,
+              "path": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativePath": "url/modules/icommerce/img/product/default.jpg",
+              "isImage": true,
+              "isVideo": false,
+              "isFolder": false,
+              "mediaType": false,
+              "folderId": null,
+              "description": null,
+              "alt": null,
+              "keywords": null,
+              "createdBy": null,
+              "createdAt": null,
+              "updatedAt": null,
+              "faIcon": "fa-file",
+              "disk": null,
+              "extension": null,
+              "url": "url/modules/icommerce/img/product/default.jpg",
+              "createdByUser": null,
+              "tags": [],
+              "thumbnails": [
+                  {
+                      "name": "smallThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "300x"
+                  },
+                  {
+                      "name": "mediumThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "600x"
+                  },
+                  {
+                      "name": "largeThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "900x"
+                  },
+                  {
+                      "name": "extraLargeThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "1920x"
+                  }
+              ],
+              "smallThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeSmallThumb": "//modules/icommerce/img/product/default.jpg?u=",
+              "mediumThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeMediumThumb": "//modules/icommerce/img/product/default.jpg?u=",
+              "largeThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeLargeThumb": "//modules/icommerce/img/product/default.jpg?u=",
+              "extraLargeThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeExtraLargeThumb": "//modules/icommerce/img/product/default.jpg?u="
+          },
+          "gallery": [],
+          "secondaryimage": {
+              "id": null,
+              "filename": null,
+              "mimeType": null,
+              "fileSize": null,
+              "path": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativePath": "url/modules/icommerce/img/product/default.jpg",
+              "isImage": true,
+              "isVideo": false,
+              "isFolder": false,
+              "mediaType": false,
+              "folderId": null,
+              "description": null,
+              "alt": null,
+              "keywords": null,
+              "createdBy": null,
+              "createdAt": null,
+              "updatedAt": null,
+              "faIcon": "fa-file",
+              "disk": null,
+              "extension": null,
+              "url": "url/modules/icommerce/img/product/default.jpg",
+              "createdByUser": null,
+              "tags": [],
+              "thumbnails": [
+                  {
+                      "name": "smallThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "300x"
+                  },
+                  {
+                      "name": "mediumThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "600x"
+                  },
+                  {
+                      "name": "largeThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "900x"
+                  },
+                  {
+                      "name": "extraLargeThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "1920x"
+                  }
+              ],
+              "smallThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeSmallThumb": "//modules/icommerce/img/product/default.jpg?u=",
+              "mediumThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeMediumThumb": "//modules/icommerce/img/product/default.jpg?u=",
+              "largeThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeLargeThumb": "//modules/icommerce/img/product/default.jpg?u=",
+              "extraLargeThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeExtraLargeThumb": "//modules/icommerce/img/product/default.jpg?u="
+          },
+          "quaternaryimage": {
+              "id": null,
+              "filename": null,
+              "mimeType": null,
+              "fileSize": null,
+              "path": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativePath": "url/modules/icommerce/img/product/default.jpg",
+              "isImage": true,
+              "isVideo": false,
+              "isFolder": false,
+              "mediaType": false,
+              "folderId": null,
+              "description": null,
+              "alt": null,
+              "keywords": null,
+              "createdBy": null,
+              "createdAt": null,
+              "updatedAt": null,
+              "faIcon": "fa-file",
+              "disk": null,
+              "extension": null,
+              "url": "url/modules/icommerce/img/product/default.jpg",
+              "createdByUser": null,
+              "tags": [],
+              "thumbnails": [
+                  {
+                      "name": "smallThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "300x"
+                  },
+                  {
+                      "name": "mediumThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "600x"
+                  },
+                  {
+                      "name": "largeThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "900x"
+                  },
+                  {
+                      "name": "extraLargeThumb",
+                      "path": "url/modules/icommerce/img/product/default.jpg?u=",
+                      "size": "1920x"
+                  }
+              ],
+              "smallThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeSmallThumb": "//modules/icommerce/img/product/default.jpg?u=",
+              "mediumThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeMediumThumb": "//modules/icommerce/img/product/default.jpg?u=",
+              "largeThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeLargeThumb": "//modules/icommerce/img/product/default.jpg?u=",
+              "extraLargeThumb": "url/modules/icommerce/img/product/default.jpg?u=",
+              "relativeExtraLargeThumb": "//modules/icommerce/img/product/default.jpg?u="
+          }
+      },
+      "isNew": true,
+      "isAvailable": false,
+      "layoutId": null,
+      "isInternal": null,
+      "priceLists": []
+  }
+}`}
+/>
+
+----
+##  Eliminar un producto
+
+Usa este endpoint para eliminar un producto en especifico.
+
+Envia el id del producto, para eliminarlo.
+
+<Api
+  method="DELETE"
+  url="/api/icommerce/v3/products/{id}"
+  request={`{}`}
+  responseSample={`{
+  "data": "Request successful"
+}`}
+/>
+
+----
+## Campos de Producto
+
+<table>
+  <tr>
+    <td>id</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Integer</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Esta es la identificación única del producto, se genera automaticamente, cada que se crea.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>sku</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Varchar</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Esta es la identificación del producto, es usado en la sincronización masiva, además del ID.</p>
+      <p>Longitud máxima de 191 caracteres.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>status</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Boolean (0 | 1)</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Estado del producto: Inactivo <code>0</code> o Activo <code>1</code>.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>category_id</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Integer</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Identificación de la categoría a la que pertenece el producto.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>quantity</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Integer</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Cantidad disponible del producto en el inventario.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>stock_status</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Boolean (0 | 1)</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Estado de la existencia del producto: Agotado <code>0</code> o Disponible <code>1</code>.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>manufacturer_id</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Integer</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Identificación del fabricante del producto.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>shipping</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Boolean (0 | 1)</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Indica si el producto se puede enviar: No <code>0</code> o Si <code>1</code>.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>subtract</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Boolean (0 | 1)</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Indica si se resta la cantidad en stock cuando se realiza una venta: No <code>0</code> o Si <code>1</code>.
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>featured</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Boolean (0 | 1)</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Indica si el producto es destacado: No <code>0</code> o Si <code>1</code>.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>freeshipping</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Boolean (0 | 1)</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Indica si el envio del producto es gratuito: No <code>0</code> o Si <code>1</code>.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>is_call</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Boolean (0 | 1)</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Indica si se puede cotizar el producto: No <code>0</code> o Si <code>1</code>.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>show_price_is_call</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Boolean (0 | 1)</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Indica si se debe mostrar el precio del producto: No <code>0</code> o Si <code>1</code>.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>price</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>double(30,2)</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Precio del producto.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>points</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Integer</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>
+        Puntos asociados al producto.
+        <br/>
+        Funciona de la mano con el modulo de puntos(este modulo es adicional) para gestionar redención de premios.
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>date_available</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Fecha</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Fecha en que el producto estará disponible.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>weight</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>double(8,2)</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Peso del producto.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>length</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>double(8,2)</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Longitud del producto.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>width</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>double(8,2)</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Ancho del producto.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>height</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>double(8,2)</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Altura del producto.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>reference</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Varchar</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Referencia asociada al producto.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>name</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Text</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Nombre del producto. Es traducible.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>sort_order</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Integer</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Orden de clasificación del producto.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>custom_url</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Varchar</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>URL personalizada o amigable asignada al producto.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>description</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Text</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Descripción detallada del producto. Es traducible.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>summary</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Text</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Resumen del producto. Es traducible.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>slug</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Varchar</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Slug o URL amigable para el producto. Es traducible.</p>
+      <b>Limite de 191 caracteres.</b>
+    </td>
+  </tr>
+  <tr>
+    <td>meta_title</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Varchar</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Título meta para el producto. Es traducible.</p>
+      <b>Limite de 191 caracteres.</b>
+    </td>
+  </tr>
+  <tr>
+    <td>meta_description</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Text</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Descripción meta para el producto. Es traducible</p>
+      <b>Limite de 191 caracteres.</b>
+    </td>
+  </tr>
+  <tr>
+    <td>advanced_summary</td>
+    <td>
+      <i class="colorGraySpan">Tipo:</i>
+      <br/>
+      <code>Text</code>
+      <br/>
+      <i class="colorGraySpan">Descripción:</i>
+      <br/>
+      <p>Resumen avanzado del producto. Es traducible</p>
+    </td>
+  </tr>
+</table>
+
+Si necesitas asistencia adicional o tienes alguna pregunta sobre cómo completar estos campos, no dudes en ponerte en contacto con nuestro equipo de soporte.

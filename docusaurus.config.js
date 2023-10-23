@@ -6,13 +6,13 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
-  favicon: 'img/favicon.ico',
+  title: 'Laravel',
+  tagline: 'Documentation about Laravel',
+  favicon: 'img/logo.png',
 
   // Set the production url of your site here
   url: 'https://imagina.github.com',
-  baseUrl: '/project-laravel-framework-docs',
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -31,6 +31,21 @@ const config = {
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'es'],
+    path: 'i18n',
+    localeConfigs: {
+      en: {
+        label: 'English',
+        direction: 'ltr',
+        htmlLang: 'en-US',
+        path: 'en'
+      },
+      es: {
+        label: 'Español',
+        htmlLang: 'es',
+        direction: 'ltr',
+        path: 'es'
+      }
+    }
   },
 
   presets: [
@@ -42,8 +57,8 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          /*editUrl:
+            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',*/
         },
         blog: {
           showReadingTime: true,
@@ -65,22 +80,27 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'My Site',
+        title: 'Home',
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: 'Imagina Logo',
+          src: 'img/logo.png',
         },
         items: [
-          {
+          /*{
             type: 'docSidebar',
             sidebarId: 'LaravelSidebar',
             position: 'left',
             label: 'Laravel',
-          },
-          /*{
-            type: 'localeDropdown',
+          },*/
+          {
+            type: 'docSidebar',
+            sidebarId: 'APISidebar',
             position: 'left',
-            label: 'Laravel',
+            label: 'API',
+          },
+          {
+            type: 'localeDropdown',
+            position: 'right',
           },
           /*{to: '/blog', label: 'Blog', position: 'left'},
           {
@@ -103,19 +123,19 @@ const config = {
             ],
           },
           {
-            title: 'Community',
+            title: 'Social Media',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: 'Instagram',
+                href: 'https://instagram.com/imaginacolombia?igshid=MzRlODBiNWFlZA==',
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                label: 'Facebook',
+                href: 'https://www.facebook.com/profile.php?id=100090088891700&mibextid=ZbWKwL',
               },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                label: 'X',
+                href: 'https://twitter.com/imaginacolombia',
               },
             ],
           },
@@ -123,17 +143,13 @@ const config = {
             title: 'More',
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/imagina/project-modules',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Imagina Colombia, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,

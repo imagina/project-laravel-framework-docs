@@ -1,0 +1,82 @@
+{
+  "version.label": {
+    "message": "Siguiente",
+    "description": "The label for version current"
+  },
+  "sidebar.APISidebar.category.Tutorials": {
+    "message": "Tutoriales",
+    "description": "The label for category Tutorials in sidebar APISidebar"
+  },
+  "sidebar.APISidebar.category.Modules": {
+    "message": "Modulos",
+    "description": "The label for category Tutorials in sidebar APISidebar"
+  },
+  "sidebar.LaravelSidebar.category.Tutorials": {
+    "message": "Tutoriales",
+    "description": "The label for category Tutorials in sidebar LaravelSidebar"
+  },
+  "sidebar.LaravelSidebar.category.Installation": {
+    "message": "Instalación",
+    "description": "The label for category Installation in sidebar LaravelSidebar"
+  },
+  "sidebar.LaravelSidebar.category.Guides": {
+    "message": "Guides",
+    "description": "The label for category Guides in sidebar LaravelSidebar"
+  },
+  "sidebar.LaravelSidebar.category.Diagrams": {
+    "message": "Diagrams",
+    "description": "The label for category Diagrams in sidebar LaravelSidebar"
+  },
+  "sidebar.LaravelSidebar.category.Modules": {
+    "message": "Modules",
+    "description": "The label for category Modules in sidebar LaravelSidebar"
+  },
+  "sidebar.LaravelSidebar.category.Core": {
+    "message": "Core",
+    "description": "The label for category Core in sidebar LaravelSidebar"
+  },
+  "sidebar.LaravelSidebar.category.Core.link.generated-index.description": {
+    "message": "En el core puedes encontrar todo esto!!! WIIII",
+    "description": "The generated-index page description for category Core in sidebar LaravelSidebar"
+  },
+  "sidebar.LaravelSidebar.category.Ihelpers": {
+    "message": "Ihelpers",
+    "description": "The label for category Ihelpers in sidebar LaravelSidebar"
+  },
+  "sidebar.LaravelSidebar.category.Ihelpers.link.generated-index.description": {
+    "message": "En Ihelpers puedes tener todo lo que necesitas para las ayudas de tu sistema!",
+    "description": "The generated-index page description for category Ihelpers in sidebar LaravelSidebar"
+  },
+  "sidebar.LaravelSidebar.category.Iprofile": {
+    "message": "Iprofile",
+    "description": "The label for category Iprofile in sidebar LaravelSidebar"
+  },
+  "sidebar.LaravelSidebar.category.Isite": {
+    "message": "Isite",
+    "description": "The label for category Isite in sidebar LaravelSidebar"
+  },
+  "sidebar.LaravelSidebar.category.Page": {
+    "message": "Page",
+    "description": "The label for category Page in sidebar LaravelSidebar"
+  },
+  "sidebar.LaravelSidebar.category.Setup": {
+    "message": "Setup",
+    "description": "The label for category Setup in sidebar LaravelSidebar"
+  },
+  "sidebar.LaravelSidebar.category.Testing": {
+    "message": "Testing",
+    "description": "The label for category Testing in sidebar LaravelSidebar"
+  },
+  "sidebar.LaravelSidebar.category.UnitTest": {
+    "message": "UnitTest",
+    "description": "The label for category UnitTest in sidebar LaravelSidebar"
+  },
+  "sidebar.LaravelSidebar.category.UnitTest.link.generated-index.description": {
+    "message": "En el testing",
+    "description": "The generated-index page description for category UnitTest in sidebar LaravelSidebar"
+  },
+  "sidebar.LaravelSidebar.category.Wiki": {
+    "message": "Wiki",
+    "description": "The label for category Wiki in sidebar LaravelSidebar"
+  }
+}

@@ -1,0 +1,530 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Api from '@site/src/components/rest/Api';
+
+# Manufacturer
+Use the REST API to interact with the manufacturers in the application.
+
+:::info
+Remember that for some requests, you need to send the authentication token.
+
+`Header Parameters`
+
+```json
+{
+  "Authorization": "Bearer ...token..."
+}
+```
+And the query parameters are as follows:
+
+`Query Parameters`
+
+```json
+{
+  "setting": {
+    "timezone": "America/Bogota",
+    "fromAdmin": true,
+    "appMode": "iadmin",
+    "authProvider": "local",
+    "locale": "en"
+  }
+}
+```
+:::
+
+## Create a Manufacturer
+Use this endpoint to create a manufacturer.
+
+<Api
+  method="POST"
+  url="/api/icommerce/v3/manufacturers"
+  minimum={`{
+  "attributes": {
+    "es": { //This depends on the server's language
+      "title": "Test",
+      "slug": "test",
+      "description": "Descriptión" // You can use HTML for this field
+    }
+  }
+}`}
+  request={`{
+  "attributes": {
+    "store_id": 1,
+    "status": "1",
+    "sort_order": "0",
+    "medias_single": {},
+    "medias_multi": {},
+    "es": {
+      "name": "test",
+      "slug": "test",
+      "description": "Test",
+      "meta_title": "",
+      "meta_description": ""
+    }
+  }
+}`}
+  responseSample={`{
+  "data": {
+    "id": 1,
+    "name": "Xiamoi",
+    "slug": "xiamoi",
+    "url": "",
+    "description": "Test",
+    "storeId": 1,
+    "sortOrder": "0",
+    "metaTitle": "",
+    "metaDescription": "",
+    "options": null,
+    "createdAt": "2023-10-23 16:20:04",
+    "updatedAt": "2023-10-23 16:20:04",
+    "status": "1",
+    "mainImage": {
+      "mimeType": "image/jpeg",
+      "path": "..."
+    },
+    "mediaFiles": {
+      "mainimage": {
+        "id": null,
+        "filename": null,
+        "mimeType": null,
+        "fileSize": null,
+        "path": "...",
+        "relativePath": "...",
+        "isImage": true,
+        "isVideo": false,
+        "isFolder": false,
+        "mediaType": false,
+        "folderId": null,
+        "description": null,
+        "alt": null,
+        "keywords": null,
+        "createdBy": null,
+        "createdAt": null,
+        "updatedAt": null,
+        "faIcon": "fa-file",
+        "disk": null,
+        "extension": null,
+        "url": "...",
+        "createdByUser": null,
+        "tags": [],
+        "thumbnails": [
+          {
+            "name": "smallThumb",
+            "path": "...",
+            "size": "300x"
+          },
+          {
+            "name": "mediumThumb",
+            "path": "...",
+            "size": "600x"
+          },
+          {
+            "name": "largeThumb",
+            "path": "...",
+            "size": "900x"
+          },
+          {
+            "name": "extraLargeThumb",
+            "path": "...",
+            "size": "1920x"
+          }
+        ],
+        "smallThumb": "...",
+        "relativeSmallThumb": "//modules/icommerce/img/manufacturer/default.jpg?u=",
+        "mediumThumb": "...",
+        "relativeMediumThumb": "//modules/icommerce/img/manufacturer/default.jpg?u=",
+        "largeThumb": "...",
+        "relativeLargeThumb": "//modules/icommerce/img/manufacturer/default.jpg?u=",
+        "extraLargeThumb": "...",
+        "relativeExtraLargeThumb": "//modules/icommerce/img/manufacturer/default.jpg?u="
+      },
+      "secondaryimage": {...},
+      "tertiaryimage": {...},
+      "quaternaryimage": {...},
+      "carouseltopindeximages": []
+    }
+  }
+}`}
+/>
+
+---
+## Modify a Manufacturer
+
+Use this endpoint to modify a manufacturer. You can send one or multiple values in the request.
+
+By default, the accepted value is the ID. However, if you want to send another value, you must include it in the `Query Parameters`:
+
+```json
+{
+  "filter": {
+    "field": "title" // Value by which the search will be performed
+  }
+}
+```
+
+<Api
+  method="PUT"
+  url="/api/icommerce/v3/manufacturers/{criteria}"
+  minimum={`{
+  "attributes": {
+    "es": {
+      "title": "change name",
+    }
+  }
+}`}
+  request={`{
+  "attributes": {
+    "store_id": 1,
+    "status": "1",
+    "sort_order": "0",
+    "medias_single": {},
+    "medias_multi": {},
+    "es": {
+      "name": "test",
+      "slug": "test",
+      "description": "Test",
+      "meta_title": "",
+      "meta_description": ""
+    }
+  }
+}`}
+  responseSample={`{
+  "data": "Item Updated"
+}`}
+/>
+
+---
+## Get Multiple Manufacturers
+
+Use this endpoint to retrieve multiple manufacturers.
+
+You can filter manufacturers and paginate the results.
+
+`Query Parameters`:
+
+<Api
+  method="GET"
+  url="/api/icommerce/v3/manufacturers"
+  request={`{
+  "filter": {
+    "order": {
+      "field":"created_at",
+      "way":"desc"
+    }
+  },
+  "page": 1,
+  "take": 1
+}`}
+  responseSample={`{
+  "data": [
+    {
+      "id": 1,
+      "name": "Test",
+      "slug": "test",
+      "url": "",
+      "description": "Test",
+      "storeId": 1,
+      "sortOrder": "0",
+      "metaTitle": "",
+      "metaDescription": "",
+      "options": null,
+      "createdAt": "2023-10-23 16:20:04",
+      "updatedAt": "2023-10-23 16:20:04",
+      "status": "1",
+      "mainImage": {
+        "mimeType": "image/jpeg",
+        "path": "..."
+      },
+      "mediaFiles": {
+        "mainimage": {
+          "id": null,
+          "filename": null,
+          "mimeType": null,
+          "fileSize": null,
+          "path": "...",
+          "relativePath": "...",
+          "isImage": true,
+          "isVideo": false,
+          "isFolder": false,
+          "mediaType": false,
+          "folderId": null,
+          "description": null,
+          "alt": null,
+          "keywords": null,
+          "createdBy": null,
+          "createdAt": null,
+          "updatedAt": null,
+          "faIcon": "fa-file",
+          "disk": null,
+          "extension": null,
+          "url": "...",
+          "createdByUser": null,
+          "tags": [],
+          "thumbnails": [
+            {
+              "name": "smallThumb",
+              "path": "...",
+              "size": "300x"
+            },
+            {
+              "name": "mediumThumb",
+              "path": "...",
+              "size": "600x"
+            },
+            {
+              "name": "largeThumb",
+              "path": "...",
+              "size": "900x"
+            },
+            {
+              "name": "extraLargeThumb",
+              "path": "...",
+              "size": "1920x"
+            }
+          ],
+          "smallThumb": "...",
+          "relativeSmallThumb": "//modules/icommerce/img/manufacturer/default.jpg?u=",
+          "mediumThumb": "...",
+          "relativeMediumThumb": "//modules/icommerce/img/manufacturer/default.jpg?u=",
+          "largeThumb": "...",
+          "relativeLargeThumb": "//modules/icommerce/img/manufacturer/default.jpg?u=",
+          "extraLargeThumb": "...",
+          "relativeExtraLargeThumb": "//modules/icommerce/img/manufacturer/default.jpg?u="
+        },
+        "secondaryimage": {/*...*/},
+        "tertiaryimage": {/*...*/},
+        "quaternaryimage": {/* ... */},
+        "carouseltopindeximages": []
+      }
+    }
+  ],
+  "meta": {
+    "page": {
+      "total": 1,
+      "lastPage": 1,
+      "perPage": "1",
+      "currentPage": 1
+    }
+  }
+}`}
+/>
+
+---
+## Get a Manufacturer
+
+Use this endpoint to retrieve a specific manufacturer.
+
+<Api
+  method="GET"
+  url="/api/icommerce/v3/manufacturers/{criteria}"
+  request={`{}`}
+  responseSample={`{
+  "data": {
+    "id": 1,
+    "name": "Test",
+    "slug": "test",
+    "url": "",
+    "description": "Test",
+    "storeId": 1,
+    "sortOrder": "0",
+    "metaTitle": "",
+    "metaDescription": "",
+    "options": null,
+    "createdAt": "2023-10-23 16:20:04",
+    "updatedAt": "2023-10-23 16:20:04",
+    "status": "1",
+    "mainImage": {
+      "mimeType": "image/jpeg",
+      "path": "..."
+    },
+    "mediaFiles": {
+      "mainimage": {
+        "id": null,
+        "filename": null,
+        "mimeType": null,
+        "fileSize": null,
+        "path": "...",
+        "relativePath": "...",
+        "isImage": true,
+        "isVideo": false,
+        "isFolder": false,
+        "mediaType": false,
+        "folderId": null,
+        "description": null,
+        "alt": null,
+        "keywords": null,
+        "createdBy": null,
+        "createdAt": null,
+        "updatedAt": null,
+        "faIcon": "fa-file",
+        "disk": null,
+        "extension": null,
+        "url": "...",
+        "createdByUser": null,
+        "tags": [],
+        "thumbnails": [
+          {
+            "name": "smallThumb",
+            "path": "...",
+            "size": "300x"
+          },
+          {
+            "name": "mediumThumb",
+            "path": "...",
+            "size": "600x"
+          },
+          {
+            "name": "largeThumb",
+            "path": "...",
+            "size": "900x"
+          },
+          {
+            "name": "extraLargeThumb",
+            "path": "...",
+            "size": "1920x"
+          }
+        ],
+        "smallThumb": "...",
+        "relativeSmallThumb": "//modules/icommerce/img/manufacturer/default.jpg?u=",
+        "mediumThumb": "...",
+        "relativeMediumThumb": "//modules/icommerce/img/manufacturer/default.jpg?u=",
+        "largeThumb": "...",
+        "relativeLargeThumb": "//modules/icommerce/img/manufacturer/default.jpg?u=",
+        "extraLargeThumb": "...",
+        "relativeExtraLargeThumb": "//modules/icommerce/img/manufacturer/default.jpg?u="
+      },
+      "secondaryimage": {/* ... */},
+      "tertiaryimage": {/*... */},
+      "quaternaryimage": {/**... */},
+      "carouseltopindeximages": []
+    },
+    "es": {
+      "name": "Test",
+      "slug": "test",
+      "description": "Test",
+      "metaTitle": null,
+      "metaDescription": null
+    }
+  }
+}`}
+/>
+
+---
+## Delete a Manufacturer
+
+Use this endpoint to delete a specific manufacturer.
+
+Send the manufacturer's ID to delete it.
+
+<Api
+  method="DELETE"
+  url="/api/icommerce/v3/manufacturers/{id}"
+  request={`{}`}
+  responseSample={`{
+  "data": "Request successful"
+}`}
+/>
+
+---
+## Manufacturer Fields
+
+<table>
+  <tr>
+    <td>name</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br />
+      <code>Varchar</code>
+      <br />
+      <i class="colorGraySpan">Description:</i>
+      <br />
+      <p>Manufacturer's name.</p>
+      <b>Maximum characters are 191.</b>
+    </td>
+  </tr>
+  <tr>
+    <td>slug</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br />
+      <code>Varchar</code>
+      <br />
+      <i class="colorGraySpan">Description:</i>
+      <br />
+      <p>Friendly URL or slug of the manufacturer.</p>
+      <b>Maximum characters are 191.</b>
+    </td>
+  </tr>
+  <tr>
+    <td>description</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br />
+      <code>Text</code>
+      <br />
+      <i class="colorGraySpan">Description:</i>
+      <br />
+      <p>Detailed description of the manufacturer.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>meta_title</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br />
+      <code>Text</code>
+      <br />
+      <i class="colorGraySpan">Description:</i>
+      <br />
+      <p>Meta title for the manufacturer.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>meta_description</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br />
+      <code>Text</code>
+      <br />
+      <i class="colorGraySpan">Description:</i>
+      <br />
+      <p>Meta description for the manufacturer.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>status</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br />
+      <code>Boolean</code>
+      <br />
+      <i class="colorGraySpan">Description:</i>
+      <br />
+      <p>Manufacturer's status.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>sort_order</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br />
+      <code>Integer</code>
+      <br />
+      <i class="colorGraySpan">Description:</i>
+      <br />
+      <p>Sort order of the manufacturer.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>store_id</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br />
+      <code>Integer</code>
+      <br />
+      <i class="colorGraySpan">Description:</i>
+      <br />
+      <p>Identification of the store associated with the manufacturer.</p>
+    </td>
+  </tr>
+</table>
