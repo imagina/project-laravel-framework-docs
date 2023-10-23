@@ -12,7 +12,7 @@ const config = {
 
   // Set the production url of your site here
   url: 'https://imagina.github.com',
-  baseUrl: '/project-laravel-framework-docs',
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
