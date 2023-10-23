@@ -11,8 +11,8 @@ const config = {
   favicon: 'img/logo.png',
 
   // Set the production url of your site here
-  url: 'https://project-laravel-framework-docs-mn6typ3rk.vercel.app',
-  baseUrl: '/',
+  url: 'https://imagina.github.com',
+  baseUrl: '/project-laravel-framework-docs',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
