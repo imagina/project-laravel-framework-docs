@@ -11,7 +11,7 @@ const config = {
   favicon: 'img/logo.png',
 
   // Set the production url of your site here
-  url: 'https://imagina.github.com',
+  //url: 'https://imagina.github.com',
   baseUrl: '/',
 
   // GitHub pages deployment config.
