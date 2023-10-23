@@ -1,0 +1,634 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Api from '@site/src/components/rest/Api';
+
+# Category
+Use the REST API to interact with the categories in the application.
+
+:::info
+Remember that for some requests, you need to send the authentication token.
+
+`Header Parameters`
+
+```json
+{
+  "Authorization": "Bearer ...token..."
+}
+```
+And the query parameters are as follows:
+
+`Query Parameters`
+
+```json
+{
+  "setting": {
+    "timezone": "America/Bogota",
+    "fromAdmin": true,
+    "appMode": "iadmin",
+    "authProvider": "local",
+    "locale": "en"
+  }
+}
+```
+:::
+
+## Create a Category
+Use this endpoint to create a category.
+
+<Api
+  method="POST"
+  url="/api/icommerce/v3/categories"
+  minimum={`{
+  "attributes": {
+    "es": { // This depends on the server's language
+      "title": "Test",
+      "slug": "test",
+      "summary": "Resumen",
+      "description": "Descripción" // You can use HTML for this field
+    }
+  }
+}`}
+  request={`{
+  "attributes": {
+    "user_id": 2,
+    "status": "1",
+    "parent_id": "0",
+    "show_menu": false,
+    "featured": "0",
+    "sort_order": "0",
+    "medias_single": {},
+    "medias_multi": {},
+    "layout_id": null,
+    "es": {
+      "title": "categorías",
+      "slug": "categorias",
+      "description": "testeans",
+      "h1_title": "",
+      "meta_title": "",
+      "meta_description": ""
+    }
+  }
+}`}
+  responseSample={`{
+  "data": {
+    "id": 10,
+    "title": "Testeando",
+    "h1Title": "",
+    "slug": "testeando",
+    "url": "...",
+    "newUrl": "...",
+    "description": "Descripción",
+    "parentId": 0,
+    "sortOrder": "0",
+    "metaTitle": "Testeando",
+    "metaDescription": "Descripción",
+    "options": null,
+    "createdAt": "2023-10-23 11:01:22",
+    "updatedAt": "2023-10-23 11:01:22",
+    "parent": null,
+    "children": [],
+    "status": "0",
+    "mediaFiles": {
+      "mainimage": {
+        "id": null,
+        "filename": null,
+        "mimeType": null,
+        "fileSize": null,
+        "path": "...",
+        "relativePath": "...",
+        "isImage": true,
+        "isVideo": false,
+        "isFolder": false",
+        ...
+      },
+      "secondaryimage": {
+        "id": null,
+        "filename": null,
+        "mimeType": null,
+        "fileSize": null,
+        "path": "...",
+        "relativePath": "...",
+        "isImage": true,
+        "isVideo": false,
+        "isFolder": false",
+        ...
+      },
+      "quaternaryimage": {
+        "id": null,
+        "filename": null,
+        "mimeType": null,
+        "fileSize": null,
+        "path": "...",
+        "relativePath": "...",
+        "isImage": true,
+        "isVideo": false,
+        "isFolder": false",
+        ...
+      },
+      "iconimage": {
+        "id": null,
+        "filename": null,
+        "mimeType": null,
+        "fileSize": null,
+        "path": "...",
+        "relativePath": "...",
+        "isImage": true,
+        "isVideo": false,
+        "isFolder": false",
+        ...
+      },
+      "bannerindeximage": {
+        "id": null,
+        "filename": null,
+        "mimeType": null,
+        "fileSize": null,
+        "path": "...",
+        "relativePath": "...",
+        "isImage": true,
+        "isVideo": false,
+        "isFolder": false",
+        ...
+      },
+      "carouselindeximage": [],
+      "carouseltopindeximages": []
+    },
+    "layoutId": null
+  }
+}`}
+/>
+
+---
+## Modify a Category
+Use this endpoint to modify a category. You can send one or more values in the request.
+
+By default, the accepted value is the ID. If you want to send another value, you must include the following in the `Query Parameters`:
+
+```json
+{
+  "filter": {
+    "field": "title" // The value by which the search will be performed
+  }
+}
+```
+
+<Api
+  method="PUT"
+  url="/api/icommerce/v3/categories/{criteria}"
+  minimum={`{
+  "attributes": {
+    "es": {
+      "title": "fix name",
+    }
+  }
+}`}
+  request={`{
+  "attributes": {
+    "user_id": 2,
+    "status": "1",
+    "parent_id": "0",
+    "show_menu": false,
+    "featured": "0",
+    "sort_order": "0",
+    "medias_single": {},
+    "medias_multi": {},
+    "layout_id": null,
+    "es": {
+      "title": "categorías",
+      "slug": "categorias",
+      "description": "testeans",
+      "h1_title": "",
+      "meta_title": "",
+      "meta_description": ""
+    }
+  }
+}`}
+  responseSample={`{
+  "data": "Item Updated"
+}`}
+/>
+
+---
+## Get Multiple Categories
+
+Use this endpoint to retrieve multiple categories.
+
+You can filter and paginate the categories. The data that can be included are:
+
+| Include | Description |
+|------------|--------------------------------------------|
+| parent | Include the parent of the category |
+
+`Query Parameters`:
+
+<Api
+  method="GET"
+  url="/api/icommerce/v3/categories"
+  request={`{
+  "filter": {
+    "order": {
+      "field":"created_at",
+      "way":"desc"
+    }
+  },
+  "page": 1, //Numero de pagina de categorías
+  "take": 1, //Categorías tomadas
+  "include": 'parent'
+}`}
+  responseSample={`{
+  "data": [
+    {
+      "id": 2,
+      "title": "Testeando",
+      "h1Title": "",
+      "slug": "testeando",
+      "url": "",
+      "newUrl": "",
+      "description": "Descripción",
+      "parentId": 0,
+      "showMenu": false,
+      "featured": false,
+      "sortOrder": "0",
+      "metaTitle": "Testeando",
+      "metaDescription": "Descripción",
+      "options": null,
+      "createdAt": "2023-10-23 11:01:22",
+      "updatedAt": "2023-10-23 11:01:22",
+      "parent": {
+        "id": 1,
+        "title": "Categoria padre",
+        "h1Title": "",
+        "slug": "categoria-padre",
+        "url": "",
+        "newUrl": "",
+        "description": "padre",
+        "parentId": 0,
+        "showMenu": false,
+        "featured": true,
+        "sortOrder": "0",
+        "metaTitle": "Categoria padre",
+        "metaDescription": "Esta es una Categoria padre",
+        "options": {
+          "masterRecord": "0",
+          "view": "1",
+          "descriptionIndex": null
+        },
+        "createdAt": "2023-09-21 09:01:36",
+        "updatedAt": "2023-09-21 09:01:36",
+        "status": "1",
+        "mediaFiles": {...},
+        "layoutId": null
+      },
+      "status": "1",
+      "mediaFiles": {
+        "mainimage": {
+          "id": null,
+          "filename": null,
+          "mimeType": null,
+          "fileSize": null,
+          "path": "...",
+          "relativePath": "....",
+          "isImage": true,
+          "isVideo": false,
+          "isFolder": false,
+          "mediaType": false,
+          "folderId": null,
+          "description": null,
+          "alt": null,
+          "keywords": null,
+          "createdBy": null,
+          "createdAt": null,
+          "updatedAt": null,
+          "faIcon": "fa-file",
+          "disk": null,
+          "extension": null,
+          "url": "....",
+          "createdByUser": null,
+          "tags": [],
+          "thumbnails": [
+            {
+              "name": "smallThumb",
+              "path": "...",
+              "size": "300x"
+            },
+            {
+              "name": "mediumThumb",
+              "path": "...",
+              "size": "600x"
+            },
+            {
+              "name": "largeThumb",
+              "path": "...",
+              "size": "900x"
+            },
+            {
+              "name": "extraLargeThumb",
+              "path": "...",
+              "size": "1920x"
+            }
+          ],
+          "smallThumb": "...",
+          "relativeSmallThumb": "...",
+          "mediumThumb": "...",
+          "relativeMediumThumb": "...",
+          "largeThumb": "...",
+          "relativeLargeThumb": "...",
+          "extraLargeThumb": "...",
+          "relativeExtraLargeThumb": "..."
+        },
+        "secondaryimage": { "id": null },
+        "quaternaryimage": { "id": null },
+        "iconimage": { "id": null },
+        "bannerindeximage": { "id": null },
+        "carouselindeximage": [],
+        "carouseltopindeximages": []
+      },
+      "layoutId": null
+    }
+  ],
+  "meta": {
+    "page": {
+      "total": 10,
+      "lastPage": 10,
+      "perPage": "1",
+      "currentPage": 1
+    }
+  }
+}`}
+/>
+
+---
+## Get a Category
+
+Use this endpoint to retrieve a specific category.
+
+<Api
+  method="GET"
+  url="/api/icommerce/v3/categories/{criteria}"
+  request={`{}`}
+  responseSample={`{
+  "data": {
+    "id": 2,
+    "title": "Testeando",
+    "h1Title": "",
+    "slug": "testeando",
+    "url": "",
+    "newUrl": "",
+    "description": "Descripción",
+    "parentId": 0,
+    "showMenu": false,
+    "featured": false,
+    "sortOrder": "0",
+    "metaTitle": "Testeando",
+    "metaDescription": "Descripción",
+    "options": null,
+    "createdAt": "2023-10-23 11:01:22",
+    "updatedAt": "2023-10-23 11:01:22",
+    "parentId": 1,
+    "status": "1",
+    "mediaFiles": {
+      "mainimage": {
+        "id": null,
+        "filename": null,
+        "mimeType": null,
+        "fileSize": null,
+        "path": "...",
+        "relativePath": "....",
+        "isImage": true,
+        "isVideo": false,
+        "isFolder": false,
+        "mediaType": false,
+        "folderId": null,
+        "description": null,
+        "alt": null,
+        "keywords": null,
+        "createdBy": null,
+        "createdAt": null,
+        "updatedAt": null,
+        "faIcon": "fa-file",
+        "disk": null,
+        "extension": null,
+        "url": "....",
+        "createdByUser": null,
+        "tags": [],
+        "thumbnails": [
+          {
+            "name": "smallThumb",
+            "path": "...",
+            "size": "300x"
+          },
+          {
+            "name": "mediumThumb",
+            "path": "...",
+            "size": "600x"
+          },
+          {
+            "name": "largeThumb",
+            "path": "...",
+            "size": "900x"
+          },
+          {
+            "name": "extraLargeThumb",
+            "path": "...",
+            "size": "1920x"
+          }
+        ],
+        "smallThumb": "...",
+        "relativeSmallThumb": "...",
+        "mediumThumb": "...",
+        "relativeMediumThumb": "...",
+        "largeThumb": "...",
+        "relativeLargeThumb": "...",
+        "extraLargeThumb": "...",
+        "relativeExtraLargeThumb": "..."
+      },
+      "secondaryimage": { "id": null },
+      "quaternaryimage": { "id": null },
+      "iconimage": { "id": null },
+      "bannerindeximage": { "id": null },
+      "carouselindeximage": [],
+      "carouseltopindeximages": []
+    },
+    "layoutId": null
+  }
+}`}
+/>
+
+---
+## Delete a Category
+
+Use this endpoint to delete a specific category.
+
+Send the category's ID to delete it.
+
+<Api
+  method="DELETE"
+  url="/api/icommerce/v3/categories/{id}"
+  request={`{}`}
+  responseSample={`{
+  "data": "Request successful"
+}`}
+/>
+
+---
+## Category Fields
+
+<table>
+  <tr>
+    <td>title</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br/>
+      <code>Text</code>
+      <br/>
+      <i class="colorGraySpan">Description:</i>
+      <br/>
+      <p>Category title.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>h1_title</td>
+    <td>
+      <i class "colorGraySpan">Type:</i>
+      <br/>
+      <code>Varchar</code>
+      <br/>
+      <i class="colorGraySpan">Description:</i>
+      <br/>
+      <p>Category H1 title.</p>
+      <b>Maximum of 191 characters.</b>
+    </td>
+  </tr>
+  <tr>
+    <td>slug</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br/>
+      <code>Varchar</code>
+      <br/>
+      <i class="colorGraySpan">Description:</i>
+      <br/>
+      <p>Category's friendly URL or slug.</p>
+      <b>Maximum of 191 characters.</b>
+    </td>
+  </tr>
+  <tr>
+    <td>description</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br/>
+      <code>Text</code>
+      <br/>
+      <i class="colorGraySpan">Description:</i>
+      <br/>
+      <p>Detailed description of the category.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>meta_title</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br/>
+      <code>Text</code>
+      <br/>
+      <i class="colorGraySpan">Description:</i>
+      <br/>
+      <p>Meta title for the category.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>meta_description</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br/>
+      <code>Text</code>
+      <br/>
+      <i class="colorGraySpan">Description:</i>
+      <br/>
+      <p>Meta description for the category.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>parent_id</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br/>
+      <code>Integer</code>
+      <br/>
+      <i class="colorGraySpan">Description:</i>
+      <br/>
+      <p>Identification of the parent category it belongs to.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>show_menu</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br/>
+      <code>Boolean</code>
+      <br/>
+      <i class="colorGraySpan">Description:</i>
+      <br/>
+      <p>Indicates whether the category should be shown in the menu (true/false).</p>
+    </td>
+  </tr>
+  <tr>
+    <td>featured</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br/>
+      <code>Boolean</code>
+      <br/>
+      <i class="colorGraySpan">Description:</i>
+      <br/>
+      <p>Indicates if the category is featured (true/false).</p>
+    </td>
+  </tr>
+  <tr>
+    <td>store_id</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br/>
+      <code>Integer</code>
+      <br/>
+      <i class="colorGraySpan">Description:</i>
+      <br/>
+      <p>Identification of the store associated with the category.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>status</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br/>
+      <code>Varchar</code>
+      <br/>
+      <i class="colorGraySpan">Description:</i>
+      <br/>
+      <p>Category status.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>sort_order</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br/>
+      <code>Integer</code>
+      <br/>
+      <i class="colorGraySpan">Description:</i>
+      <br/>
+      <p>Order of category in a list or catalog.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>external_id</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br/>
+      <code>Integer</code>
+      <br/>
+      <i class="colorGraySpan">Description:</i>
+      <br/>
+      <p>External identification of the category.</p>
+    </td>
+  </tr>
+</table>

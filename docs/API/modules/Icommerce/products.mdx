@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Products
 
 Use the REST API to interact with the products in the application.
@@ -23,7 +27,7 @@ And the query parameters are as follows:
     "fromAdmin": true,
     "appMode": "iadmin",
     "authProvider": "local",
-    "locale": "es"
+    "locale": "en"
   }
 }
 ```
@@ -40,7 +44,7 @@ import Api from '@site/src/components/rest/Api';
   minimum={`{
   "attributes": {
     "category_id": "2", // This Id is the identification of the categories
-    "es": { // This depends on the server's language
+    "en": { // This depends on the server's language
       "name": "Test",
       "slug": "test",
       "summary": "Summary",
@@ -50,13 +54,11 @@ import Api from '@site/src/components/rest/Api';
 }`}
   request={`{
   "attributes": {
-    "parent_id": "",
     "status": 1,
     "category_id": "2",
     "categories": [
       "2"
     ],
-    "added_by_id": 2,
     "sku": "SKU-15",
     "quantity": 1,
     "stock_status": 1,
@@ -77,7 +79,6 @@ import Api from '@site/src/components/rest/Api';
     "points": 0,
     "related_products": [],
     "product_options": [],
-    "discounts": [],
     "price_lists": [],
     "medias_single": {
       "mainimage": 349
@@ -92,10 +93,6 @@ import Api from '@site/src/components/rest/Api';
         "orders": "335,336,342"
       }
     },
-    "options": {
-      "masterRecord": 0,
-      "video": null
-    },
     "manufacturer_id": "3",
     "meta_title": "test",
     "meta_description": "test",
@@ -104,7 +101,7 @@ import Api from '@site/src/components/rest/Api';
     "sort_order": "0",
     "item_type_id": 1,
     "custom_url": "",
-    "es": {
+    "en": {
       "name": "Test 20",
       "slug": "test-20",
       "summary": "Summary",
@@ -333,13 +330,11 @@ Use this endpoint to modify a product. You can send one or multiple values in th
 }`}
   request={`{
   "attributes": {
-    "parent_id": "",
     "status": 1,
     "category_id": "2",
     "categories": [
       "2"
     ],
-    "added_by_id": 2,
     "sku": "SKU-15",
     "quantity": 1,
     "stock_status": 1,
@@ -360,7 +355,6 @@ Use this endpoint to modify a product. You can send one or multiple values in th
     "points": 0,
     "related_products": [],
     "product_options": [],
-    "discounts": [],
     "price_lists": [],
     "medias_single": {
       "mainimage": 349
@@ -375,10 +369,6 @@ Use this endpoint to modify a product. You can send one or multiple values in th
         "orders": "335,336,342"
       }
     },
-    "options": {
-      "masterRecord": 0,
-      "video": null
-    },
     "manufacturer_id": "3",
     "meta_title": "test",
     "meta_description": "test",
@@ -387,7 +377,7 @@ Use this endpoint to modify a product. You can send one or multiple values in th
     "sort_order": "0",
     "item_type_id": 1,
     "custom_url": "",
-    "es": {
+    "en": {
       "name": "Test 20",
       "slug": "test-20",
       "summary": "Summary",
@@ -406,6 +396,13 @@ Use this endpoint to modify a product. You can send one or multiple values in th
 ## Get Multiple Products
 
 Use this endpoint to retrieve multiple products. You can filter the products, paginate them, and include additional data such as associated categories.
+The data that can be included is:
+
+| Include      | Description                                    |
+|--------------|--------------------------------------------|
+| categories   | Fetches the categories associated with the product. |
+| manufacturer | Fetches manufacturer data associated with the product. |
+| tags         | Fetches the tags associated with the product. |
 
 `Query Parameters:`
 
@@ -421,7 +418,7 @@ Use this endpoint to retrieve multiple products. You can filter the products, pa
   },
   "page": 1, // Page number of products
   "take": 1, // Number of products to retrieve
-  "include": 'categories'
+  "include": 'categories,manufacturer,tags'
 }`}
   responseSample={`{
   "data": [
@@ -602,103 +599,23 @@ Use this endpoint to retrieve multiple products. You can filter the products, pa
       "totalTaxes": 0,
       "manufacturerId": 3,
       "mediaFiles": {
-        "mainimage": {
-          "id": null,
-          "filename": null,
-          "mimeType": null,
-          "fileSize": null,
-          "path": "...",
-          "relativePath": "...",
-          "isImage": true,
-          "isVideo": false,
-          "isFolder": false,
-          "mediaType": false,
-          "folderId": null,
-          "description": null,
-          "alt": null,
-          "keywords": null,
-          "createdBy": null,
-          "createdAt": null,
-          "updatedAt": null,
-          "faIcon": "fa-file",
-          "disk": null,
-          "extension": null,
-          "url": "..."
-        },
-        "gallery": [],
-        "secondaryimage": {
-          "id": null,
-          "filename": null,
-          "mimeType": null,
-          "fileSize": null,
-          "path": "...",
-          "relativePath": "...",
-          "isImage": true,
-          "isVideo": false,
-          "isFolder": false,
-          "mediaType": false,
-          "folderId": null,
-          "description": null,
-          "alt": null,
-          "keywords": null,
-          "createdBy": null,
-          "createdAt": null,
-          "updatedAt": null,
-          "faIcon": "fa-file",
-          "disk": null,
-          "extension": null,
-          "url": "..."
-        }
+        ...
       },
-      "layoutId": null
+      "isNew": true,
+      "isAvailable": true,
+      "layoutId": null,
+      "isInternal": 0,
+      "advancedSummary": "Avanzado",
+      "priceLists": []
     }
   ],
-  "mainimage": {
-    "id": null,
-    "filename": null,
-    "mimeType": null,
-    "fileSize": null,
-    "path": "...",
-    "relativePath": "...",
-    "isImage": true,
-    "isVideo": false,
-    "isFolder": false,
-    "mediaType": false,
-    "folderId": null,
-    "description": null,
-    "alt": null,
-    "keywords": null,
-    "createdBy": null,
-    "createdAt": null,
-    "updatedAt": null,
-    "faIcon": "fa-file",
-    "disk": null,
-    "extension": null,
-    "url": "..."
-  },
-  "gallery": [],
-  "secondaryimage": {
-    "id": null,
-    "filename": null,
-    "mimeType": null,
-    "fileSize": null,
-    "path": "...",
-    "relativePath": "...",
-    "isImage": true,
-    "isVideo": false,
-    "isFolder": false,
-    "mediaType": false,
-    "folderId": null,
-    "description": null,
-    "alt": null,
-    "keywords": null,
-    "createdBy": null,
-    "createdAt": null,
-    "updatedAt": null,
-    "faIcon": "fa-file",
-    "disk": null,
-    "extension": null,
-    "url": "..."
+  "meta": {
+    "page": {
+      "total": 8,
+      "lastPage": 8,
+      "perPage": 1,
+      "currentPage": 1
+    }
   }
 }`}
 />
@@ -922,30 +839,6 @@ Use this endpoint to delete a specific product by sending the product's ID.
       <br/>
       <p>This is the product identification used in bulk synchronization, in addition to the ID.</p>
       <p>Maximum length of 191 characters.</p>
-    </td>
-  </tr>
-  <tr>
-    <td>added_by_id</td>
-    <td>
-      <i class="colorGraySpan">Type:</i>
-      <br/>
-      <code>Integer</code>
-      <br/>
-      <i class="colorGraySpan">Description:</i>
-      <br/>
-      <p>Identification of the user who added this item.</p>
-    </td>
-  </tr>
-  <tr>
-    <td>options</td>
-    <td>
-      <i class="colorGraySpan">Type:</i>
-      <br/>
-      <code>Text</code>
-      <br/>
-      <i class="colorGraySpan">Description:</i>
-      <br/>
-      <p>Options associated with the item.</p>
     </td>
   </tr>
   <tr>

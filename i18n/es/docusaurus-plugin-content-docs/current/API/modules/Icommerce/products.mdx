@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -42,7 +46,7 @@ import Api from '@site/src/components/rest/Api';
   minimum={`{
   "attributes": {
     "category_id": "2", //Este Id es la identificaciÃ³n de las catergorias
-    "es": { //Este depende del idiomar del servidor
+    "es": { //Este depende del idioma del servidor
       "name": "Test",
       "slug": "test",
       "summary": "Resumen",
@@ -52,13 +56,11 @@ import Api from '@site/src/components/rest/Api';
 }`}
   request={`{
   "attributes": {
-    "parent_id": "",
     "status": 1,
     "category_id": "2",
     "categories": [
       "2"
     ],
-    "added_by_id": 2,
     "sku": "SKU-15",
     "quantity": 1,
     "stock_status": 1,
@@ -79,7 +81,6 @@ import Api from '@site/src/components/rest/Api';
     "points": 0,
     "related_products": [],
     "product_options": [],
-    "discounts": [],
     "price_lists": [],
     "medias_single": {
       "mainimage": 349
@@ -93,10 +94,6 @@ import Api from '@site/src/components/rest/Api';
         ],
         "orders": "335,336,342"
       }
-    },
-    "options": {
-      "masterRecord": 0,
-      "video": null
     },
     "manufacturer_id": "3",
     "meta_title": "test",
@@ -338,13 +335,11 @@ Por defecto el valor que se acepta es el id, pero si quieres enviar otro valor, 
 }`}
   request={`{
   "attributes": {
-    "parent_id": "",
     "status": 1,
     "category_id": "2",
     "categories": [
       "2"
     ],
-    "added_by_id": 2,
     "sku": "SKU-15",
     "quantity": 1,
     "stock_status": 1,
@@ -365,7 +360,6 @@ Por defecto el valor que se acepta es el id, pero si quieres enviar otro valor, 
     "points": 0,
     "related_products": [],
     "product_options": [],
-    "discounts": [],
     "price_lists": [],
     "medias_single": {
       "mainimage": 349
@@ -379,10 +373,6 @@ Por defecto el valor que se acepta es el id, pero si quieres enviar otro valor, 
         ],
         "orders": "335,336,342"
       }
-    },
-    "options": {
-      "masterRecord": 0,
-      "video": null
     },
     "manufacturer_id": "3",
     "meta_title": "test",
@@ -413,6 +403,14 @@ Por defecto el valor que se acepta es el id, pero si quieres enviar otro valor, 
 Usa este endpoint para obtener varios producto.
 
 Puedes filtrar los productos, tambien paginarlos e incluir datos (Como si trae las categorias asociadas, o no)
+Los datos que se pueden incluir son:
+
+| Include | Descripción |
+|------------|--------------------------------------------|
+| categories | Trae las categorias asociadas al producto. |
+| manufacturer | Trae los datos del fabricante, asociado al producto. |
+| tags | Trae las etiquetas asociadas al producto. |
+
 `Query Parameters`:
 
 <Api
@@ -427,7 +425,7 @@ Puedes filtrar los productos, tambien paginarlos e incluir datos (Como si trae l
   },
   "page": 1, //Numero de pagina de productos
   "take": 1, //Productos tomados
-  "include": 'categories'
+  "include": 'categories,manufacturer,tags'
 }`}
   responseSample={`{
   "data": [
@@ -608,103 +606,23 @@ Puedes filtrar los productos, tambien paginarlos e incluir datos (Como si trae l
       "totalTaxes": 0,
       "manufacturerId": 3,
       "mediaFiles": {
-        "mainimage": {
-          "id": null,
-          "filename": null,
-          "mimeType": null,
-          "fileSize": null,
-          "path": "...",
-          "relativePath": "...",
-          "isImage": true,
-          "isVideo": false,
-          "isFolder": false,
-          "mediaType": false,
-          "folderId": null,
-          "description": null,
-          "alt": null,
-          "keywords": null,
-          "createdBy": null,
-          "createdAt": null,
-          "updatedAt": null,
-          "faIcon": "fa-file",
-          "disk": null,
-          "extension": null,
-          "url": "..."
-        },
-        "gallery": [],
-        "secondaryimage": {
-          "id": null,
-          "filename": null,
-          "mimeType": null,
-          "fileSize": null,
-          "path": "...",
-          "relativePath": "...",
-          "isImage": true,
-          "isVideo": false,
-          "isFolder": false,
-          "mediaType": false,
-          "folderId": null,
-          "description": null,
-          "alt": null,
-          "keywords": null,
-          "createdBy": null,
-          "createdAt": null,
-          "updatedAt": null,
-          "faIcon": "fa-file",
-          "disk": null,
-          "extension": null,
-          "url": "..."
-        }
+        ...
       },
-      "layoutId": null
+      "isNew": true,
+      "isAvailable": true,
+      "layoutId": null,
+      "isInternal": 0,
+      "advancedSummary": "Avanzado",
+      "priceLists": []
     }
   ],
-  "mainimage": {
-    "id": null,
-    "filename": null,
-    "mimeType": null,
-    "fileSize": null,
-    "path": "...",
-    "relativePath": "...",
-    "isImage": true,
-    "isVideo": false,
-    "isFolder": false,
-    "mediaType": false,
-    "folderId": null,
-    "description": null,
-    "alt": null,
-    "keywords": null,
-    "createdBy": null,
-    "createdAt": null,
-    "updatedAt": null,
-    "faIcon": "fa-file",
-    "disk": null,
-    "extension": null,
-    "url": "..."
-  },
-  "gallery": [],
-  "secondaryimage": {
-    "id": null,
-    "filename": null,
-    "mimeType": null,
-    "fileSize": null,
-    "path": "...",
-    "relativePath": "...",
-    "isImage": true,
-    "isVideo": false,
-    "isFolder": false,
-    "mediaType": false,
-    "folderId": null,
-    "description": null,
-    "alt": null,
-    "keywords": null,
-    "createdBy": null,
-    "createdAt": null,
-    "updatedAt": null,
-    "faIcon": "fa-file",
-    "disk": null,
-    "extension": null,
-    "url": "..."
+  "meta": {
+    "page": {
+      "total": 8,
+      "lastPage": 8,
+      "perPage": 1,
+      "currentPage": 1
+    }
   }
 }`}
 />
@@ -960,8 +878,8 @@ Envia el id del producto, para eliminarlo.
 />
 
 ----
+## Campos de Producto
 
-## Product Fields
 <table>
   <tr>
     <td>id</td>
@@ -986,30 +904,6 @@ Envia el id del producto, para eliminarlo.
       <br/>
       <p>Esta es la identificación del producto, es usado en la sincronización masiva, además del ID.</p>
       <p>Longitud máxima de 191 caracteres.</p>
-    </td>
-  </tr>
-  <tr>
-    <td>added_by_id</td>
-    <td>
-      <i class="colorGraySpan">Tipo:</i>
-      <br/>
-      <code>Integer</code>
-      <br/>
-      <i class="colorGraySpan">Descripción:</i>
-      <br/>
-      <p>Identificación del usuario que agregó este elemento.</p>
-    </td>
-  </tr>
-  <tr>
-    <td>options</td>
-    <td>
-      <i class="colorGraySpan">Tipo:</i>
-      <br/>
-      <code>Text</code>
-      <br/>
-      <i class="colorGraySpan">Descripción:</i>
-      <br/>
-      <p>Opciones asociadas al elemento.</p>
     </td>
   </tr>
   <tr>
