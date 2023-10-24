@@ -2,8 +2,26 @@
   "Tutorial - 5min ⏱️": {
     "message": "Tutorial - 5min ⏱️"
   },
-  "Documentation about Laravel": {
-    "message": "Documentación sobre Laravel"
+  "Documentation about Weygo": {
+    "message": "Documentación sobre Weygo"
+  },
+  "Introduction": {
+    "message": "Introducción"
+  },
+  "Dive into our API and acquire fundamental knowledge about it.": {
+    "message": "Sumérgete en nuestra API y adquiere conocimientos básicos sobre ella."
+  },
+  "Learn now": {
+    "message": "Aprende ahora"
+  },
+  "Modules": {
+    "message": "Modulos"
+  },
+  "Unlock the full potential of our modules through exploration.": {
+    "message": "Desbloquea todo el potencial de nuestros módulos mediante la exploración."
+  },
+  "Visit us now": {
+    "message": "Visítanos ya"
   },
   "theme.ErrorPageContent.title": {
     "message": "Esta página se bloqueó.",

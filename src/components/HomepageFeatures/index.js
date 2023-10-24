@@ -4,35 +4,59 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'very Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'GraphQL First',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        React is good, GraphQl makes it better. Use GraphQL query at the component level. Data fetching never been easier.
       </>
     ),
+    readMore: '/docs/development/knowledge-base/data-fetching'
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Zero Config',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Automatic compilation and bundling. Optimized for production from the start. Stay focused on the code.
       </>
     ),
+    readMore: '/docs/development/getting-started/installation-guide'
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Fast Refresh',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Evershop Fast Refresh provides fast, reliable live-editing experience. Edit code and see changes in seconds.
       </>
     ),
+    readMore: '/docs/development/knowledge-base/fast-refresh'
   },
+  {
+    title: 'File-system Middleware',
+    description: (
+      <>
+        File-system based middleware. Flexible to add or remove middleware. Easy to extend and customize.
+      </>
+    ),
+    readMore: '/docs/development/knowledge-base/middleware-system'
+  },
+  {
+    title: 'API Routes',
+    description: (
+      <>
+        Flexible to create API endpoints to provide backend functionality. Easy to extend and customize.
+      </>
+    ),
+    readMore: '/docs/development/knowledge-base/api-routes'
+  },
+  {
+    title: 'Built-in CSS Support',
+    description: (
+      <>
+        Import CSS files from a JavaScript file. Built-in Sass and TailwindCSS support. Live reload with HMR.
+      </>
+    ),
+    readMore: '/docs/development/theme/styling'
+  }
 ];
 
 function Feature({Svg, title, description}) {

@@ -6,9 +6,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Laravel',
-  tagline: 'Documentation about Laravel',
-  favicon: 'img/logo.png',
+  title: 'Docs Weygo Laravel',
+  tagline: 'Documentation about Weygo',
+  favicon: 'img/logo_dark.png',
 
   // Set the production url of your site here
   url: 'https://imagina.github.com',
@@ -80,10 +80,10 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'Home',
         logo: {
-          alt: 'Imagina Logo',
-          src: 'img/logo.png',
+          alt: 'Weygo Logo',
+          src: 'img/logo_light_theme.png',
+          srcDark: "img/logo_dark_theme.png",
         },
         items: [
           /*{
@@ -155,6 +155,9 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      colorMode: {
+        respectPrefersColorScheme: true
+      }
     }),
 };
 
