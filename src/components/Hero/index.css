@@ -1,0 +1,60 @@
+.boxes {
+    display: flex;
+    padding: 15px;
+    width: 100%;
+    flex: 0 0 100%;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.box {
+    border: 1px dashed var(--ifm-color-primary-dark);
+    border-radius: 10px;
+    flex: 1;
+    position: relative;
+    transition: background-color .2s ease-in-out;
+    max-width: 280px;
+    min-width: 200px;
+}
+
+.box:hover {
+    background-color: var(--ifm-color-primary-dark);
+}
+
+.text {
+    padding: 16px 16px 23px 21px;
+}
+
+.title {
+    font-size: 22px;
+    line-height: 1.2;
+}
+
+.description {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
+.more {
+    align-items: center;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-top: 14px;
+}
+
+.link {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    overflow: hidden;
+    position: absolute;
+    text-indent: -9999px;
+    z-index: 5;
+}
