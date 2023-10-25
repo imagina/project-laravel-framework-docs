@@ -76,6 +76,11 @@ const sidebars = {
         dirName: "API/modules"
       },
       ]
+    },
+    {
+      type: "category",
+      label: "i18n",
+      items: ['API/locale/intro']
     }
   ],
 };
