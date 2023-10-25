@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Docs Weygo Laravel',
-  tagline: 'Documentation about Weygo',
+  title: 'Docs Weygo API',
+  tagline: 'Documentation about API',
   favicon: 'img/logo_dark.png',
 
   // Set the production url of your site here
@@ -102,12 +102,11 @@ const config = {
             type: 'localeDropdown',
             position: 'right',
           },
-          /*{to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/imagina/project-modules',
             label: 'GitHub',
             position: 'right',
-          },*/
+          },
         ],
       },
       footer: {
@@ -117,8 +116,8 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'API | Tutorial',
+                to: '/docs/API/tutorial/intro',
               },
             ],
           },
@@ -146,10 +145,14 @@ const config = {
                 label: 'GitHub',
                 href: 'https://github.com/imagina/project-modules',
               },
+              {
+                label: 'Imagina Software',
+                href: 'https://www.imaginacolombia.com/'
+              }
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Imagina Colombia, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Imagina Software, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,

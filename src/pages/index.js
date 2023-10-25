@@ -16,15 +16,6 @@ function HomepageHeader() {
       <div className="container">
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle"><Translate>{siteConfig.tagline}</Translate></p>
-        {/*<div className={styles.buttons}>*/}
-        {/*  <Link*/}
-        {/*    className="button button--secondary button--lg"*/}
-        {/*    to="/docs/intro">*/}
-        {/*    <Translate>*/}
-        {/*    Tutorial - 5min ⏱️*/}
-        {/*    </Translate>*/}
-        {/*  </Link>*/}
-        {/*</div>*/}
         <Hero />
       </div>
     </header>
@@ -39,7 +30,8 @@ export default function Home() {
       description="Description will go into a meta tag in <head />">
       <HomepageHeader />
       <main>
-        {/*<HomepageFeatures />*/}
+        <h2 className="subtitle"><Translate>Development Stack</Translate></h2>
+        <HomepageFeatures />
       </main>
     </Layout>
   );

@@ -11,7 +11,7 @@
 }
 
 .box {
-    border: 1px dashed var(--ifm-color-primary-darkest);
+    border: 1px dashed var(--ifm-color-primary-dark);
     border-radius: 10px;
     flex: 1;
     position: relative;
@@ -21,7 +21,7 @@
 }
 
 .box:hover {
-    background-color: var(--ifm-color-primary-darkest);
+    background-color: var(--ifm-color-primary-dark);
 }
 
 .text {
