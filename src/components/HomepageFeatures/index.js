@@ -19,7 +19,7 @@ const FeatureList = [
     imgUrl: '/svgLogo/laravel.svg'
   },
   {
-    title: 'Livewere',
+    title: 'LiveWire',
     imgUrl: '/svgLogo/livewire.svg'
   },
   {
