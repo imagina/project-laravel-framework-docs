@@ -35,7 +35,7 @@ And the query parameters are as follows:
 
 The API supports many languages, one of which is:
 
-| Locale   | Nombre  |
+| Locale   | Name    |
 |----------|---------|
 | `es` | Spanish |
 | `en` | English |

@@ -1,0 +1,195 @@
+import Api from '@site/src/components/rest/Api';
+import { TableSchema } from '@site/src/components/table/table.jsx';
+import { volumeClass } from './scheme/schemeIcommerce.jsx'
+
+
+# VolumeClass
+Use the REST API to interact with the volumeClass in the application.
+
+:::info
+Remember that for some requests, you need to send the authentication token.
+
+`Header Parameters`
+
+```json
+{
+  "Authorization": "Bearer ...token..."
+}
+```
+And the query parameters are as follows:
+
+`Query Parameters`
+
+```json
+{
+  "setting": {
+    "timezone": "America/Bogota",
+    "fromAdmin": true,
+    "appMode": "iadmin",
+    "authProvider": "local",
+    "locale": "en"
+  }
+}
+```
+:::
+
+## Create a VolumeClass
+Use this endpoint to create a volumeClass. You can only have one default as `true`.
+
+<Api
+  method="POST"
+  url="/api/icommerce/v3/volume-classes"
+  minimum={`{
+  "attributes": {
+    "value": 1,
+    "en": { //This depends on the server's language
+      "title": "Liter",
+      "unit": "l",
+    }
+  }
+}`}
+  request={`{
+  "attributes": {
+    "value": 1,
+    "default": true,
+    "en": {
+      "title": "Liter",
+      "unit": "l",
+    }
+  }
+}`}
+  responseSample={`{
+  "data": {
+    "id": 1,
+    "title": "Liter",
+    "default": true,
+    "unit": "l",
+    "value": 1
+  }
+}`}
+/>
+
+---
+## Modify a VolumeClass
+
+Use this endpoint to modify a VolumeClass. You can send one or multiple values in the request.
+
+By default, the accepted value is the ID. However, if you want to send another value, you must include it in the `Query Parameters`:
+
+```json
+{
+  "filter": {
+    "field": "title" // Value by which the search will be performed
+  }
+}
+```
+
+<Api
+  method="PUT"
+  url="/api/icommerce/v3/volume-classes/{criteria}"
+  minimum={`{
+  "attributes": {
+    "en": {
+      "title": "Milliliter",
+    }
+  }
+}`}
+  request={`{
+  "attributes": {
+    "value": 0.45,
+    "default": true,
+    "en": {
+      "title": "Milliliter",
+      "unit": "ml",
+    }
+  }
+}`}
+  responseSample={`{
+  "data": "Item Updated"
+}`}
+/>
+
+---
+## Get Multiple VolumeClass
+
+Use this endpoint to retrieve multiple VolumeClass.
+
+You can filter VolumeClass and paginate the results.
+
+`Query Parameters`:
+
+<Api
+  method="GET"
+  url="/api/icommerce/v3/volume-classes"
+  request={`{
+  "filter": {
+    "order": {
+      "field":"created_at",
+      "way":"desc"
+    }
+  },
+  "page": 1,
+  "take": 1
+}`}
+  responseSample={`{
+  "data": [
+    {
+      "id": 1,
+      "title": "Liter",
+      "default": true,
+      "unit": "l",
+      "value": 1
+    }
+  ],
+  "meta": {
+    "page": {
+      "total": 1,
+      "lastPage": 1,
+      "perPage": "1",
+      "currentPage": 1
+    }
+  }
+}`}
+/>
+
+---
+## Get a VolumeClass
+
+Use this endpoint to retrieve a specific VolumeClass.
+
+<Api
+  method="GET"
+  url="/api/icommerce/v3/volume-classes/{criteria}"
+  request={`{}`}
+  responseSample={`{
+  "data": {
+    "id": 1,
+    "title": "Liter",
+    "default": true,
+    "unit": "l",
+    "value": 1
+  }
+}`}
+/>
+
+---
+## Delete a VolumeClass
+
+Use this endpoint to delete a specific VolumeClass.
+
+Send the VolumeClass's ID to delete it.
+
+<Api
+  method="DELETE"
+  url="/api/icommerce/v3/volume-classes/{id}"
+  request={`{}`}
+  responseSample={`{
+  "data": "Request successful"
+}`}
+/>
+
+---
+## VolumeClass Fields
+
+<TableSchema columnNames={["Name", "Description"]} data={volumeClass} />
+

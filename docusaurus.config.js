@@ -101,12 +101,7 @@ const config = {
           {
             type: 'localeDropdown',
             position: 'right',
-          },
-          {
-            href: 'https://github.com/imagina/project-modules',
-            label: 'GitHub',
-            position: 'right',
-          },
+          }
         ],
       },
       footer: {

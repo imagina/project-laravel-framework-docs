@@ -1,7 +1,7 @@
 # Locale
 The supported languages for the API are the following:
 
-| Locale | Nombre |
+| Locale | Name |
 |-----|-------|
 | `ace` | Achinese |
 | `af` | Afrikaans |
@@ -279,17 +279,17 @@ The supported languages for the API are the following:
 | `wal` | Wolaytta |
 | `chr` | Cherokee |
 | `iu` | Inuktitut (Canadian Aboriginal Syllabics) |
-| `oj` | Ojibwa |
-| `cr` | Cree |
-| `km` | Khmer |
-| `mn-Mong` | Mongolian (Mongolian) |
-| `shi-Tfng` | Tachelhit (Tifinagh) |
-| `tzm` | Central Atlas Tamazight (Tifinagh) |
-| `yue` | Yue |
-| `ja` | Japanese |
-| `zh` | Chinese (Simplified) |
-| `zh-Hant` | Chinese (Traditional) |
-| `ii` | Sichuan Yi |
-| `vai` | Vai (Vai) |
-| `jv-Java` | Javanese (Javanese) |
-| `ko` | Korean |
+| `oj` | Ojibwa                                    |
+| `cr` | Cree                                      |
+| `km` | Khmer                                     |
+| `mn-Mong` | Mongolian (Mongolian)                     |
+| `shi-Tfng` | Tachelhit (Tifinagh)                      |
+| `tzm` | Central Atlas Tamazight (Tifinagh)        |
+| `yue` | Yue                                       |
+| `ja` | Japanese                                  |
+| `zh` | Chinese (Simplified)                      |
+| `zh-Hant` | Chinese (Traditional)                     |
+| `ii` | Sichuan Yi                                |
+| `vai` | Vai (Vai)                                 |
+| `jv-Java` | Javanese (Javanese)                       |
+| `ko` | Korean                                    |
