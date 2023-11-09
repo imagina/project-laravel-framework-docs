@@ -1,0 +1,195 @@
+import Api from '@site/src/components/rest/Api';
+import { TableSchema } from '@site/src/components/table/table.jsx';
+import { weightClass } from './scheme/schemeIcommerce.jsx'
+
+
+# WeightClass
+Use the REST API to interact with the WeightClass in the application.
+
+:::info
+Remember that for some requests, you need to send the authentication token.
+
+`Header Parameters`
+
+```json
+{
+  "Authorization": "Bearer ...token..."
+}
+```
+And the query parameters are as follows:
+
+`Query Parameters`
+
+```json
+{
+  "setting": {
+    "timezone": "America/Bogota",
+    "fromAdmin": true,
+    "appMode": "iadmin",
+    "authProvider": "local",
+    "locale": "en"
+  }
+}
+```
+:::
+
+## Create a WeightClass
+Use this endpoint to create a WeightClass. You can only have one default as `true`.
+
+<Api
+  method="POST"
+  url="/api/icommerce/v3/weight-classes"
+  minimum={`{
+  "attributes": {
+    "value": 1000.00,
+    "en": { //This depends on the server's language
+      "title": "Kilogram",
+      "unit": "Kg",
+    }
+  }
+}`}
+  request={`{
+  "attributes": {
+    "value": 1000,
+    "default": true,
+    "en": {
+      "title": "Kilogram",
+      "unit": "Kg",
+    }
+  }
+}`}
+  responseSample={`{
+  "data": {
+    "id": 1,
+    "title": "Kilogram",
+    "default": true,
+    "unit": "Kg",
+    "value": 1000
+  }
+}`}
+/>
+
+---
+## Modify a WeightClass
+
+Use this endpoint to modify a WeightClass. You can send one or multiple values in the request.
+
+By default, the accepted value is the ID. However, if you want to send another value, you must include it in the `Query Parameters`:
+
+```json
+{
+  "filter": {
+    "field": "title" // Value by which the search will be performed
+  }
+}
+```
+
+<Api
+  method="PUT"
+  url="/api/icommerce/v3/weight-classes/{criteria}"
+  minimum={`{
+  "attributes": {
+    "en": {
+      "title": "Ton",
+    }
+  }
+}`}
+  request={`{
+  "attributes": {
+    "value": 10,
+    "default": true,
+    "en": {
+      "title": "Ton",
+      "unit": "Tn",
+    }
+  }
+}`}
+  responseSample={`{
+  "data": "Item Updated"
+}`}
+/>
+
+---
+## Get Multiple WeightClass
+
+Use this endpoint to retrieve multiple WeightClass.
+
+You can filter WeightClass and paginate the results.
+
+`Query Parameters`:
+
+<Api
+  method="GET"
+  url="/api/icommerce/v3/weight-classes"
+  request={`{
+  "filter": {
+    "order": {
+      "field":"created_at",
+      "way":"desc"
+    }
+  },
+  "page": 1,
+  "take": 1
+}`}
+  responseSample={`{
+  "data": [
+    {
+      "id": 1,
+      "title": "Kilogram",
+      "default": true,
+      "unit": "Kg",
+      "value": 1000
+    }
+  ],
+  "meta": {
+    "page": {
+      "total": 1,
+      "lastPage": 1,
+      "perPage": "1",
+      "currentPage": 1
+    }
+  }
+}`}
+/>
+
+---
+## Get a WeightClass
+
+Use this endpoint to retrieve a specific WeightClass.
+
+<Api
+  method="GET"
+  url="/api/icommerce/v3/weight-classes/{criteria}"
+  request={`{}`}
+  responseSample={`{
+  "data": {
+    "id": 1,
+    "title": "Kilogram",
+    "default": true,
+    "unit": "Kg",
+    "value": 1000
+  }
+}`}
+/>
+
+---
+## Delete a WeightClass
+
+Use this endpoint to delete a specific WeightClass.
+
+Send the WeightClass's ID to delete it.
+
+<Api
+  method="DELETE"
+  url="/api/icommerce/v3/weight-classes/{id}"
+  request={`{}`}
+  responseSample={`{
+  "data": "Request successful"
+}`}
+/>
+
+---
+## WeightClass Fields
+
+<TableSchema columnNames={["Name", "Description"]} data={weightClass} />
+

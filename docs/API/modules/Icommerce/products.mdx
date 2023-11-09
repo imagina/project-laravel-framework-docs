@@ -64,6 +64,9 @@ import Api from '@site/src/components/rest/Api';
     "stock_status": 1,
     "price": "1000",
     "date_available": "2023/10/21",
+    "weight_class_id": 1,
+    "volume_class_id": 1,
+    "lenght_class_id": 1,
     "weight": 0,
     "length": 0,
     "width": 0,
@@ -340,6 +343,9 @@ Use this endpoint to modify a product. You can send one or multiple values in th
     "stock_status": 1,
     "price": "1000",
     "date_available": "2023/10/21",
+    "weight_class_id": 1,
+    "volume_class_id": 1,
+    "lenght_class_id": 1,
     "weight": 0,
     "length": 0,
     "width": 0,
@@ -1182,6 +1188,42 @@ Use this endpoint to delete a specific product by sending the product's ID.
       <i class="colorGraySpan">Description:</i>
       <br/>
       <p>Advanced product summary. Translatable.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>weight_class_id</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br/>
+      <code>Integer</code>
+      <br/>
+      <i class="colorGraySpan">Description:</i>
+      <br/>
+      <p>Id of WeightClass</p>
+    </td>
+  </tr>
+  <tr>
+    <td>lenght_class_id</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br/>
+      <code>Integer</code>
+      <br/>
+      <i class="colorGraySpan">Description:</i>
+      <br/>
+      <p>Id of LengthClass</p>
+    </td>
+  </tr>
+  <tr>
+    <td>volume_class_id</td>
+    <td>
+      <i class="colorGraySpan">Type:</i>
+      <br/>
+      <code>Integer</code>
+      <br/>
+      <i class="colorGraySpan">Description:</i>
+      <br/>
+      <p>Id of VolumeClass</p>
     </td>
   </tr>
 </table>

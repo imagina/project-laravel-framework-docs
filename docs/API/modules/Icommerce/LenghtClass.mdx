@@ -1,0 +1,195 @@
+import Api from '@site/src/components/rest/Api';
+import { TableSchema } from '@site/src/components/table/table.jsx';
+import { lenghtClass } from './scheme/schemeIcommerce.jsx'
+
+
+# LengthClass
+Use the REST API to interact with the LengthClass in the application.
+
+:::info
+Remember that for some requests, you need to send the authentication token.
+
+`Header Parameters`
+
+```json
+{
+  "Authorization": "Bearer ...token..."
+}
+```
+And the query parameters are as follows:
+
+`Query Parameters`
+
+```json
+{
+  "setting": {
+    "timezone": "America/Bogota",
+    "fromAdmin": true,
+    "appMode": "iadmin",
+    "authProvider": "local",
+    "locale": "en"
+  }
+}
+```
+:::
+
+## Create a LengthClass
+Use this endpoint to create a LengthClass. You can only have one default as `true`.
+
+<Api
+  method="POST"
+  url="/api/icommerce/v3/length-classes"
+  minimum={`{
+  "attributes": {
+    "value": 100.00,
+    "en": { //This depends on the server's language
+      "title": "Centimeters",
+      "unit": "cm",
+    }
+  }
+}`}
+  request={`{
+  "attributes": {
+    "value": 100,
+    "default": true,
+    "en": {
+      "title": "Centimeters",
+      "unit": "cm",
+    }
+  }
+}`}
+  responseSample={`{
+  "data": {
+    "id": 1,
+    "title": "Centimeters",
+    "default": true,
+    "unit": "cm",
+    "value": 100
+  }
+}`}
+/>
+
+---
+## Modify a LengthClass
+
+Use this endpoint to modify a LengthClass. You can send one or multiple values in the request.
+
+By default, the accepted value is the ID. However, if you want to send another value, you must include it in the `Query Parameters`:
+
+```json
+{
+  "filter": {
+    "field": "title" // Value by which the search will be performed
+  }
+}
+```
+
+<Api
+  method="PUT"
+  url="/api/icommerce/v3/length-classes/{criteria}"
+  minimum={`{
+  "attributes": {
+    "en": {
+      "title": "Decimeter",
+    }
+  }
+}`}
+  request={`{
+  "attributes": {
+    "value": 10,
+    "default": true,
+    "en": {
+      "title": "Decimeter",
+      "unit": "dm",
+    }
+  }
+}`}
+  responseSample={`{
+  "data": "Item Updated"
+}`}
+/>
+
+---
+## Get Multiple LengthClass
+
+Use this endpoint to retrieve multiple LengthClass.
+
+You can filter LengthClass and paginate the results.
+
+`Query Parameters`:
+
+<Api
+  method="GET"
+  url="/api/icommerce/v3/length-classes"
+  request={`{
+  "filter": {
+    "order": {
+      "field":"created_at",
+      "way":"desc"
+    }
+  },
+  "page": 1,
+  "take": 1
+}`}
+  responseSample={`{
+  "data": [
+    {
+      "id": 1,
+      "title": "Centimeters",
+      "default": true,
+      "unit": "cm",
+      "value": 100
+    }
+  ],
+  "meta": {
+    "page": {
+      "total": 1,
+      "lastPage": 1,
+      "perPage": "1",
+      "currentPage": 1
+    }
+  }
+}`}
+/>
+
+---
+## Get a LengthClass
+
+Use this endpoint to retrieve a specific LengthClass.
+
+<Api
+  method="GET"
+  url="/api/icommerce/v3/length-classes/{criteria}"
+  request={`{}`}
+  responseSample={`{
+  "data": {
+    "id": 1,
+    "title": "Centimeters",
+    "default": true,
+    "unit": "cm",
+    "value": 100
+  }
+}`}
+/>
+
+---
+## Delete a LengthClass
+
+Use this endpoint to delete a specific LengthClass.
+
+Send the LengthClass's ID to delete it.
+
+<Api
+  method="DELETE"
+  url="/api/icommerce/v3/length-classes/{id}"
+  request={`{}`}
+  responseSample={`{
+  "data": "Request successful"
+}`}
+/>
+
+---
+## LengthClass Fields
+
+<TableSchema columnNames={["Name", "Description"]} data={lenghtClass} />
+
