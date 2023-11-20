@@ -97,11 +97,11 @@ const config = {
             sidebarId: 'APISidebar',
             position: 'left',
             label: 'API',
-          },
+          }/*,
           {
             type: 'localeDropdown',
             position: 'right',
-          }
+          }*/
         ],
       },
       footer: {

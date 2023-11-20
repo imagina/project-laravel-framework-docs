@@ -5,32 +5,11 @@ import Api from '@site/src/components/rest/Api';
 # Category
 Use the REST API to interact with the categories in the application.
 
-:::info
-Remember that for some requests, you need to send the authentication token.
+import InfoAboutRequest from '../partials/_infoAboutRequest.mdx';
+import Cache from '../partials/_infoAboutCache.mdx';
 
-`Header Parameters`
-
-```json
-{
-  "Authorization": "Bearer ...token..."
-}
-```
-And the query parameters are as follows:
-
-`Query Parameters`
-
-```json
-{
-  "setting": {
-    "timezone": "America/Bogota",
-    "fromAdmin": true,
-    "appMode": "iadmin",
-    "authProvider": "local",
-    "locale": "en"
-  }
-}
-```
-:::
+<InfoAboutRequest />
+<Cache />
 
 ## Create a Category
 Use this endpoint to create a category.

@@ -1,37 +1,14 @@
 import Api from '@site/src/components/rest/Api';
 import { TableSchema } from '@site/src/components/table/table.jsx';
 import { volumeClass } from './scheme/schemeIcommerce.jsx'
-
+import InfoAboutRequest from '../partials/_infoAboutRequest.mdx';
+import Cache from '../partials/_infoAboutCache.mdx';
 
 # VolumeClass
 Use the REST API to interact with the volumeClass in the application.
 
-:::info
-Remember that for some requests, you need to send the authentication token.
-
-`Header Parameters`
-
-```json
-{
-  "Authorization": "Bearer ...token..."
-}
-```
-And the query parameters are as follows:
-
-`Query Parameters`
-
-```json
-{
-  "setting": {
-    "timezone": "America/Bogota",
-    "fromAdmin": true,
-    "appMode": "iadmin",
-    "authProvider": "local",
-    "locale": "en"
-  }
-}
-```
-:::
+<InfoAboutRequest />
+<Cache />
 
 ## Create a VolumeClass
 Use this endpoint to create a volumeClass. You can only have one default as `true`.

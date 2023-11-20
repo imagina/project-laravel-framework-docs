@@ -1,0 +1,194 @@
+---
+sidebar_position: 2
+---
+
+import { TableSchema } from '@site/src/components/table/table.jsx';
+import { productDiscount } from './scheme/schemeIcommerce.jsx'
+import InfoAboutRequest from '../partials/_infoAboutRequest.mdx';
+import Cache from '../partials/_infoAboutCache.mdx';
+
+# Product Discount
+
+Use the REST API to interact with the product discount in the application.
+
+<InfoAboutRequest />
+<Cache />
+
+## Create a Product Discount
+Use this endpoint to create a product discount.
+
+import Api from '@site/src/components/rest/Api';
+
+<Api
+  method="POST"
+  url="/api/icommerce/v3/product-discounts"
+  request={`{
+  "attributes": {
+    "include_departments": [
+      "0"
+    ],
+    "exclude_departments": [
+      "1"
+    ],
+    "quantity": "50",
+    "discount": "15",
+    "criteria": "percentage",
+    "date_start": "2023/11/02",
+    "date_end": "2023/11/30",
+    "priority": "5",
+    "product_id": 89,
+    "es": {}
+  }
+}`}
+  responseSample={`{
+  "data": ""
+}`}
+/>
+
+---
+## Modify a Product Discount
+Use this endpoint to modify a product discount. You can send one or multiple values in the request. By default, the accepted value is the ID, but if you want to send another value, you need to include the following in the `Query Parameters`:
+
+```json
+{
+  "filter": {
+    "field": "name" // The value by which the search will be conducted
+  }
+}
+```
+
+<Api
+  method="PUT"
+  url="/api/icommerce/v3/product-discounts/{criteria}"
+  request={`{
+  "attributes": {
+    "id": 1,
+    "quantity": 20,
+    "discount": 500,
+    "criteria": "fixed",
+    "date_start": "2023/11/02",
+    "date_end": "2023/11/30",
+    "priority": 2,
+    "product_id": 89
+  }
+}`}
+  responseSample={`{
+  "data": "Item Updated"
+}`}
+/>
+
+---
+## Get Multiple Product Discounts
+
+Use this endpoint to retrieve multiple product discounts. You can filter the product discounts, paginate them, and include additional data such as associated departments.
+The data that can be included is:
+
+| Include      | Description                                    |
+|--------------|--------------------------------------------|
+| department   | Fetches the departments associated with the product discount. |
+
+`Query Parameters:`
+
+<Api
+  method="GET"
+  url="/api/icommerce/v3/product-discounts"
+  request={`{
+  "filter": {
+    "order": {
+      "field":"created_at",
+      "way":"desc"
+    }
+  },
+  "page": 1, // Page number of products
+  "take": 1, // Number of products to retrieve
+  "include": 'department'
+}`}
+  responseSample={`{
+  "data": [
+    {
+      "id": 1,
+      "productId": 89,
+      "price": 8500,
+      "finished": false,
+      "running": true,
+      "quantity": 50,
+      "priority": 5,
+      "discount": 15,
+      "criteria": "percentage",
+      "excludeDepartments": [
+        "1"
+      ],
+      "includeDepartments": [
+        "0"
+      ],
+      "department": null,
+      "dateStart": "2023-11-02",
+      "dateEnd": "2023-11-30",
+      "createdAt": "2023-11-16 14:48:38",
+      "updatedAt": "2023-11-16 14:51:36"
+    }
+  ],
+  "meta": {
+    "page": {
+      "total": 1,
+      "lastPage": 1,
+      "perPage": "10",
+      "currentPage": 1
+    }
+  }
+}`}
+/>
+
+---
+## Get a Specific Product Discount
+
+Use this endpoint to retrieve a specific product discount.
+
+  <Api
+    method="GET"
+    url="/api/icommerce/v3/product-discounts/{criteria}"
+    request={`{}`}
+    responseSample={`{
+  "data": {
+    "id": 1,
+    "productId": 89,
+    "price": 8500,
+    "finished": false,
+    "running": true,
+    "quantity": 50,
+    "priority": 5,
+    "discount": 15,
+    "criteria": "percentage",
+    "excludeDepartments": [
+      "1"
+    ],
+    "includeDepartments": [
+      "0"
+    ],
+    "dateStart": "2023-11-02",
+    "dateEnd": "2023-11-30",
+    "createdAt": "2023-11-16 14:48:38",
+    "updatedAt": "2023-11-16 14:53:22"
+  }
+}`}
+/>
+
+---
+## Delete a Product Discount
+Use this endpoint to delete a specific product discount by sending the ID.
+
+  <Api
+    method="DELETE"
+    url="/api/icommerce/v3/product-discounts/{id}"
+    request={`{}`}
+    responseSample={`{
+  "data": "Item deleted"
+}`}
+  />
+
+----
+## Product Discount Fields
+
+<TableSchema columnNames={["Name", "Description"]} data={productDiscount} />
+
+If you need further assistance or have any questions about how to fill out these fields, please don't hesitate to contact our support team.

@@ -4,32 +4,11 @@ import DocCardList from '@theme/DocCardList';
 
 The route to access the module is as follows: `<Your-Domain>/api/icommerce/v3`
 
-:::info
-Remember that for some requests, you need to send the authentication token.
+import InfoAboutRequest from '../partials/_infoAboutRequest.mdx';
+import Cache from '../partials/_infoAboutCache.mdx';
 
-`Header Parameters`
-
-```json
-{
-  "Authorization": "Bearer ...token..."
-}
-```
-And the query parameters are as follows:
-
-`Query Parameters`
-
-```json
-{
-  "setting": {
-    "timezone": "America/Bogota",
-    "fromAdmin": true,
-    "appMode": "iadmin",
-    "authProvider": "local",
-    "locale": "en"
-  }
-}
-```
-:::
+<InfoAboutRequest />
+<Cache />
 
 ## Languages
 
