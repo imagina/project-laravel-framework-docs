@@ -1,55 +1,55 @@
 import Api from '@site/src/components/rest/Api';
 import { TableSchema } from '@site/src/components/table/table.jsx';
-import { lenghtClass } from './scheme/schemeIcommerce.jsx'
+import { quantityClass } from './scheme/schemeIcommerce.jsx'
 import InfoAboutRequest from '../partials/_infoAboutRequest.mdx';
 import Cache from '../partials/_infoAboutCache.mdx';
 
-# LengthClass
-Use the REST API to interact with the LengthClass in the application.
+# QuantityClass
+Use the REST API to interact with the quantityClass in the application.
 
 <InfoAboutRequest />
 <Cache />
 
-## Create a LengthClass
-Use this endpoint to create a LengthClass. You can only have one default as `true`.
+## Create a quantityClass
+Use this endpoint to create a quantityClass. You can only have one default as `true`.
 
 <Api
   method="POST"
-  url="/api/icommerce/v3/length-classes"
+  url="/api/icommerce/v3/quantity-classes"
   minimum={`{
   "attributes": {
-    "value": 100.00,
+    "value": 6,
     "en": { //This depends on the server's language
-      "title": "Centimeters",
-      "unit": "cm",
+      "title": "Sixpack",
+      "unit": "sixpack",
     }
   }
 }`}
   request={`{
   "attributes": {
-    "value": 100,
+    "value": 6,
     "default": true,
     "en": {
-      "title": "Centimeters",
-      "unit": "cm",
+      "title": "Sixpack",
+      "unit": "sixpack",
     }
   }
 }`}
   responseSample={`{
   "data": {
     "id": 1,
-    "title": "Centimeters",
+    "title": "Sixpack",
     "default": true,
-    "unit": "cm",
-    "value": 100
+    "unit": "sixpack",
+    "value": 6
   }
 }`}
 />
 
 ---
-## Modify a LengthClass
+## Modify a quantityClass
 
-Use this endpoint to modify a LengthClass. You can send one or multiple values in the request.
+Use this endpoint to modify a quantityClass. You can send one or multiple values in the request.
 
 By default, the accepted value is the ID. However, if you want to send another value, you must include it in the `Query Parameters`:
 
@@ -63,21 +63,21 @@ By default, the accepted value is the ID. However, if you want to send another v
 
 <Api
   method="PUT"
-  url="/api/icommerce/v3/length-classes/{criteria}"
+  url="/api/icommerce/v3/quantity-classes/{criteria}"
   minimum={`{
   "attributes": {
     "en": {
-      "title": "Decimeter",
+      "title": "Unit",
     }
   }
 }`}
   request={`{
   "attributes": {
-    "value": 10,
+    "value": 1,
     "default": true,
     "en": {
-      "title": "Decimeter",
-      "unit": "dm",
+      "title": "Unit",
+      "unit": "und",
     }
   }
 }`}
@@ -87,17 +87,17 @@ By default, the accepted value is the ID. However, if you want to send another v
 />
 
 ---
-## Get Multiple LengthClass
+## Get Multiple quantityClass
 
-Use this endpoint to retrieve multiple LengthClass.
+Use this endpoint to retrieve multiple quantityClass.
 
-You can filter LengthClass and paginate the results.
+You can filter quantityClass and paginate the results.
 
 `Query Parameters`:
 
 <Api
   method="GET"
-  url="/api/icommerce/v3/length-classes"
+  url="/api/icommerce/v3/quantity-classes"
   request={`{
   "filter": {
     "order": {
@@ -112,10 +112,10 @@ You can filter LengthClass and paginate the results.
   "data": [
     {
       "id": 1,
-      "title": "Centimeters",
+      "title": "Sixpack",
       "default": true,
-      "unit": "cm",
-      "value": 100
+      "unit": "sixpack",
+      "value": 6
     }
   ],
   "meta": {
@@ -130,35 +130,35 @@ You can filter LengthClass and paginate the results.
 />
 
 ---
-## Get a LengthClass
+## Get a quantityClass
 
-Use this endpoint to retrieve a specific LengthClass.
+Use this endpoint to retrieve a specific quantityClass.
 
 <Api
   method="GET"
-  url="/api/icommerce/v3/length-classes/{criteria}"
+  url="/api/icommerce/v3/quantity-classes/{criteria}"
   request={`{}`}
   responseSample={`{
   "data": {
     "id": 1,
-    "title": "Centimeters",
+    "title": "Sixpack",
     "default": true,
-    "unit": "cm",
-    "value": 100
+    "unit": "sixpack",
+    "value": 6
   }
 }`}
 />
 
 ---
-## Delete a LengthClass
+## Delete a quantityClass
 
-Use this endpoint to delete a specific LengthClass.
+Use this endpoint to delete a specific quantityClass.
 
-Send the LengthClass's ID to delete it.
+Send the quantityClass's ID to delete it.
 
 <Api
   method="DELETE"
-  url="/api/icommerce/v3/length-classes/{id}"
+  url="/api/icommerce/v3/quantity-classes/{id}"
   request={`{}`}
   responseSample={`{
   "data": "Request successful"
@@ -166,7 +166,7 @@ Send the LengthClass's ID to delete it.
 />
 
 ---
-## LengthClass Fields
+## QuantityClass Fields
 
-<TableSchema columnNames={["Name", "Description"]} data={lenghtClass} />
+<TableSchema columnNames={["Name", "Description"]} data={quantityClass} />
 

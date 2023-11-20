@@ -1,0 +1,31 @@
+<details>
+<summary>You should take into account when making your request</summary>
+
+:::info
+Remember that for some requests, you need to send the authentication token.
+
+`Header Parameters`
+
+```json
+{
+  "Authorization": "Bearer ...token..."
+}
+```
+And the query parameters are as follows:
+
+`Query Parameters`
+
+```json
+{
+  "setting": {
+    "timezone": "America/Bogota",
+    "fromAdmin": true,
+    "appMode": "iadmin",
+    "authProvider": "local",
+    "locale": "en"
+  }
+}
+```
+:::
+
+</details>
