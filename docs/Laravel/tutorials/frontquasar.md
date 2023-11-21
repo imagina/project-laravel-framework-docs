@@ -1,1 +1,0 @@
-# Configuring Front Quasar
