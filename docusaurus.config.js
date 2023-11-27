@@ -86,12 +86,12 @@ const config = {
           srcDark: "img/logo_dark_theme.png",
         },
         items: [
-          /*{
+          {
             type: 'docSidebar',
             sidebarId: 'LaravelSidebar',
             position: 'left',
             label: 'Laravel',
-          },*/
+          },
           {
             type: 'docSidebar',
             sidebarId: 'APISidebar',
