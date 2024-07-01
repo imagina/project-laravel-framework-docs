@@ -1,0 +1,384 @@
+---
+---
+
+import InfoAboutRequest from '../partials/_infoAboutRequest.mdx';
+import Cache from '../partials/_infoAboutCache.mdx';
+import {TableSchema} from '@site/src/components/table/table.jsx';
+import {warehouseAttributes} from './scheme/schemeIcommerce.jsx'
+import Api from '@site/src/components/rest/Api';
+
+# Warehouse
+
+Use the REST API to interact with the products in the application.
+
+<InfoAboutRequest/>
+<Cache/>
+
+## Create a Warehouse
+Use this endpoint to create a Warehouse.
+
+<Api
+  method="POST"
+  url="/api/icommerce/v3/warehouses"
+  minimum={`{
+  "attributes": {
+    "lat": "4.642129714308486",
+    "lng": "-74.11376953125001",
+    "en": {
+      "title": "Warehouse"
+    }
+  }
+}`}
+  request={`{
+  "attributes": {
+    "options": {
+      "map": {
+        "lat": "4.642129714308486",
+        "lng": "-74.11376953125001"
+      }
+    },
+    "user_id": 1,
+    "users_to_notify": ["1"],
+    "emails_to_notify": ["test@mail.com"],
+    "status": "1",
+    "default": "0",
+    "country_id": "48",
+    "province_id": "786",
+    "city_id": "956",
+    "polygon_id": null,
+    "address": "Any street",
+    "es": {
+      "title": "warehouse 1",
+      "slug": "warehouse-1",
+      "description": "Warehouse"
+    },
+    "lat": "4.642129714308486",
+    "lng": "-74.11376953125001"
+    }
+}`}
+  responseSample={`{
+  "data": {
+    "address": "Any Street",
+    "cityId": "956",
+    "countryId": "48",
+    "createdAt": "2024-07-01 15:36:22",
+    "createdBy": 1,
+    "default": "0",
+    "description": null,
+    "emailsToNotify": ["test@mail.com"],
+    "id": 3,
+    "lat": "4.642129714308486",
+    "lng": "-74.11376953125001",
+    "options": {
+      "map": {
+        "lat": "4.642129714308486",
+        "lng": "-74.11376953125001"
+      }
+    },
+    "polygonId": null,
+    "provinceId": "786",
+    "slug": "warehouse-1",
+    "status": "1",
+    "title": "warehouse 1",
+    "updatedAt": "2024-07-01 15:36:22",
+    "updatedBy": 1,
+    "usersToNotify": ["1"]
+  }
+}`}
+/>
+
+---
+## Modify a Warehouse
+Use this endpoint to modify a warehouse. You can send one or multiple values in the request. By default, the accepted value is the ID, but if you want to send another value, you need to include the following in the `Query Parameters`:
+
+```json
+{
+  "filter": {
+    "field": "name" // The value by which the search will be conducted
+  }
+}
+```
+
+<Api
+  method="PUT"
+  url="/api/icommerce/v3/warehouses/{criteria}"
+  minimum={`{
+  "attributes": {
+    "address": "Other Street"
+  }
+}`}
+  request={`{
+  "attributes": {
+    "options": {
+      "map": {
+        "lat": "4.642129714308486",
+        "lng": "-74.11376953125001"
+      }
+    },
+    "user_id": 1,
+    "users_to_notify": ["1"],
+    "emails_to_notify": ["test@mail.com"],
+    "status": "1",
+    "default": "0",
+    "country_id": "48",
+    "province_id": "786",
+    "city_id": "956",
+    "polygon_id": null,
+    "address": "Other street",
+    "es": {
+      "title": "warehouse 158",
+      "slug": "warehouse-1",
+      "description": "Warehouse update"
+    },
+    "lat": "4.642129714308486",
+    "lng": "-74.11376953125001"
+    }
+}`}
+  responseSample={`{
+  "data": "Item Updated"
+}`}
+/>
+
+---
+## Get Multiple Warehouses
+
+Use this endpoint to retrieve multiple warehouses. You can filter the warehouses, paginate them, and include additional data.
+The data that can be included is:
+
+| Include          | Description                                          |
+|------------------|------------------------------------------------------|
+| country          | Fetches the countries associated with the warehouse. |
+| province         | Fetches provinces data associated with the warehouse. |
+| city             | Fetches the cities associated with the warehouse.      |
+| polygon          | Fetches the polygons associated with the warehouse.      |
+| orders           | Fetches the orders associated with the warehouse.      |
+| cartProducts     | Fetches the cart products associated with the warehouse. |
+| profileAddresses | Fetches the profile addresses associated with the warehouse. |
+
+
+`Query Parameters:`
+
+<Api
+  method="GET"
+  url="/api/icommerce/v3/warehouses"
+  request={`{
+  "filter": {
+    "order": {
+      "field":"created_at",
+      "way":"desc"
+    }
+  },
+  "page": 1, // Page number of warehouse
+  "take": 1, // Number of warehouse to retrieve
+  "include": 'country,province,city'
+}`}
+  responseSample={`{
+    "data": [
+        {
+            "address": "Any Street",
+            "city": {
+                "code": "73001000",
+                "countryId": 48,
+                "createdAt": "2022-12-21 19:14:35",
+                "id": 956,
+                "name": "IBAGUE",
+                "provinceId": 786,
+                "updatedAt": "2022-12-21 19:14:35"
+            },
+            "cityId": 956,
+            "country": {
+                "callingCode": 57,
+                "countryCode": 170,
+                "createdAt": "2022-12-21 19:14:18",
+                "currency": "Colombian peso",
+                "currencyCode": "COP",
+                "currencySubUnit": "centavo",
+                "currencySymbol": "$",
+                "fullName": "Republic of Colombia",
+                "id": 48,
+                "iso2": "CO",
+                "iso3": "COL",
+                "name": "Colombia",
+                "regionCode": "019",
+                "status": 1,
+                "subRegionCode": "005",
+                "updatedAt": "2022-12-21 19:14:18"
+            },
+            "countryId": 48,
+            "createdAt": "2024-07-01 15:36:22",
+            "createdBy": 1,
+            "default": 0,
+            "deletedAt": null,
+            "deletedBy": null,
+            "description": null,
+            "emailsToNotify": [],
+            "id": 3,
+            "lat": "4.642129714308486",
+            "lng": "-74.11376953125001",
+            "options": {
+                "map": {
+                    "lat": "4.642129714308486",
+                    "lng": "-74.11376953125001"
+                }
+            },
+            "organizationId": null,
+            "polygonId": null,
+            "province": {
+                "countryId": 48,
+                "createdAt": "2022-12-21 19:14:21",
+                "id": 786,
+                "iso2": "CO-TOL",
+                "name": "Tolima",
+                "updatedAt": "2022-12-21 19:14:21"
+            },
+            "provinceId": 786,
+            "slug": "test-2",
+            "status": 1,
+            "title": "test 2",
+            "updatedAt": "2024-07-01 15:36:22",
+            "updatedBy": 1,
+            "usersToNotify": []
+        }
+    ],
+    "meta": {
+        "page": {
+            "total": 3,
+            "lastPage": 3,
+            "perPage": "1",
+            "currentPage": 1
+        }
+    }
+}`}
+/>
+
+---
+## Get a Specific Warehouse
+
+Use this endpoint to retrieve a specific warehouse.
+
+<Api
+  method="GET"
+  url="/api/icommerce/v3/warehouses/{criteria}"
+  request={`{}`}
+  responseSample={`{
+    "data": {
+      "address": "Any Street",
+      "city": {
+          "code": "73001000",
+          "countryId": 48,
+          "createdAt": "2022-12-21 19:14:35",
+          "id": 956,
+          "name": "IBAGUE",
+          "provinceId": 786,
+          "updatedAt": "2022-12-21 19:14:35"
+      },
+      "cityId": 956,
+      "country": {
+          "callingCode": 57,
+          "countryCode": 170,
+          "createdAt": "2022-12-21 19:14:18",
+          "currency": "Colombian peso",
+          "currencyCode": "COP",
+          "currencySubUnit": "centavo",
+          "currencySymbol": "$",
+          "fullName": "Republic of Colombia",
+          "id": 48,
+          "iso2": "CO",
+          "iso3": "COL",
+          "name": "Colombia",
+          "regionCode": "019",
+          "status": 1,
+          "subRegionCode": "005",
+          "updatedAt": "2022-12-21 19:14:18"
+      },
+      "countryId": 48,
+      "createdAt": "2024-07-01 15:36:22",
+      "createdBy": 1,
+      "default": 0,
+      "deletedAt": null,
+      "deletedBy": null,
+      "description": null,
+      "emailsToNotify": [],
+      "id": 3,
+      "lat": "4.642129714308486",
+      "lng": "-74.11376953125001",
+      "options": {
+          "map": {
+              "lat": "4.642129714308486",
+              "lng": "-74.11376953125001"
+          }
+      },
+      "organizationId": null,
+      "polygonId": null,
+      "province": {
+          "countryId": 48,
+          "createdAt": "2022-12-21 19:14:21",
+          "id": 786,
+          "iso2": "CO-TOL",
+          "name": "Tolima",
+          "updatedAt": "2022-12-21 19:14:21"
+      },
+      "provinceId": 786,
+      "slug": "test-2",
+      "status": 1,
+      "title": "test 2",
+      "updatedAt": "2024-07-01 15:36:22",
+      "updatedBy": 1,
+      "usersToNotify": []
+    }
+}`}
+/>
+
+---
+## Delete a Warehouse
+Use this endpoint to delete a specific warehouse by sending the warehouse's ID.
+
+<Api
+  method="DELETE"
+  url="/api/icommerce/v3/warehouses/{id}"
+  request={`{}`}
+  responseSample={`{
+  "data": "Request successful"
+}`}
+/>
+
+
+---
+## Add a New Product to the Warehouse
+To add a new product to the warehouse, you need to provide the following information:
+
+1. **Product ID**: You can obtain the product ID [here](/docs/API/modules/Icommerce/products#get-multiple-products).
+2. **Warehouse ID**: You can obtain the warehouse ID [here](/docs/API/modules/Icommerce/Warehouse#get-multiple-warehouses).
+3. **Quantity**: Specify the quantity of the product. Each time you update or add a new quantity, the specified amount will be added to or subtracted from the current inventory of the product. For example, if the product has a quantity of 4 and you add 20, the product will now have 24 units.
+
+
+<Api
+  method="POST"
+  url="/api/icommerce/v3/product-warehouse"
+  request={`{
+    "attributes": {
+        "product_id": "12",
+        "warehouse_id": "3",
+        "quantity": "20",
+    }
+}`}
+  responseSample={`{{
+  "data": {
+    "createdAt": "2024-07-01 16:14:24",
+    "createdBy": 1,
+    "id": 1,
+    "productId": "12",
+    "quantity": "20",
+    "updatedAt": "2024-07-01 16:14:24",
+    "updatedBy": 1,
+    "warehouseId": "3"
+  }
+}`}
+/>
+
+----
+## Warehouse Fields
+
+<TableSchema columnNames={["Name", "Description"]} data={warehouseAttributes}/>
+
+If you need further assistance or have any questions about how to fill out these fields, please don't hesitate to contact our support team.

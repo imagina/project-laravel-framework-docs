@@ -137,3 +137,66 @@ export const productDiscount = [
     { type: 'Array', description: "This list contains department identifiers that should be included in the discount." },
   ],
 ]
+
+export const warehouseAttributes = [
+  [
+    'title',
+    { type: <code>String</code>, description: 'This field stores the title of the warehouse. It is used to represent the name of the warehouse.' },
+  ],
+  [
+    'slug',
+    { type: <code>String</code>, description: 'This field stores a URL-friendly version of the warehouse title. It is typically used in URLs to identify the warehouse.' },
+  ],
+  [
+    'description',
+    { type: <code>String</code>, description: 'This field stores a description of the warehouse. It provides additional details about the warehouse.' },
+  ],
+  [
+    'lat',
+    { type: <code>Number</code>, description: 'This field stores the latitude coordinate of the warehouse. It is used for geographic location.' },
+  ],
+  [
+    'lng',
+    { type: <code>Number</code>, description: 'This field stores the longitude coordinate of the warehouse. It is used for geographic location.' },
+  ],
+  [
+    'address',
+    { type: <code>String</code>, description: 'This field stores the physical address of the warehouse. It includes street, city, and postal code information.' },
+  ],
+  [
+    'status',
+    { type: <code>String</code>, description: 'This field stores the current status of the warehouse. Possible values could include "active", "inactive", or other status indicators.' },
+  ],
+  [
+    'options',
+    { type: <code>Object</code>, description: 'This field stores additional options related to the warehouse. It can include various settings and configurations.' },
+  ],
+  [
+    'country_id',
+    { type: <code>Number</code>, description: 'This field stores the ID of the country associated with the warehouse. It is a reference to the country entity.' },
+  ],
+  [
+    'province_id',
+    { type: <code>Number</code>, description: 'This field stores the ID of the province associated with the warehouse. It is a reference to the province entity.' },
+  ],
+  [
+    'city_id',
+    { type: <code>Number</code>, description: 'This field stores the ID of the city associated with the warehouse. It is a reference to the city entity.' },
+  ],
+  [
+    'polygon_id',
+    { type: <code>Number</code>, description: 'This field stores the ID of the polygon associated with the warehouse. It is used for geographic area representation.' },
+  ],
+  [
+    'default',
+    { type: <code>Boolean</code>, description: 'This field is a boolean value that indicates whether the warehouse is the default one or not. When set to <code>1</code>, it means this warehouse is used as the default.' },
+  ],
+  [
+    'users_to_notify',
+    { type: <code>Array</code>, description: 'This field stores a list of user IDs who should be notified about certain events related to the warehouse.' },
+  ],
+  [
+    'emails_to_notify',
+    { type: <code>Array</code>, description: 'This field stores a list of email addresses that should be notified about certain events related to the warehouse.' },
+  ],
+]
