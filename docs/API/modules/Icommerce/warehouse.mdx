@@ -9,7 +9,7 @@ import Api from '@site/src/components/rest/Api';
 
 # Warehouse
 
-Use the REST API to interact with the products in the application.
+Use the REST API to interact with the warehouses in the application.
 
 <InfoAboutRequest/>
 <Cache/>
@@ -339,40 +339,6 @@ Use this endpoint to delete a specific warehouse by sending the warehouse's ID.
   request={`{}`}
   responseSample={`{
   "data": "Request successful"
-}`}
-/>
-
-
----
-## Add a New Product to the Warehouse
-To add a new product to the warehouse, you need to provide the following information:
-
-1. **Product ID**: You can obtain the product ID [here](/docs/API/modules/Icommerce/products#get-multiple-products).
-2. **Warehouse ID**: You can obtain the warehouse ID [here](/docs/API/modules/Icommerce/Warehouse#get-multiple-warehouses).
-3. **Quantity**: Specify the quantity of the product. Each time you update or add a new quantity, the specified amount will be added to or subtracted from the current inventory of the product. For example, if the product has a quantity of 4 and you add 20, the product will now have 24 units.
-
-
-<Api
-  method="POST"
-  url="/api/icommerce/v3/product-warehouse"
-  request={`{
-    "attributes": {
-        "product_id": "12",
-        "warehouse_id": "3",
-        "quantity": "20",
-    }
-}`}
-  responseSample={`{{
-  "data": {
-    "createdAt": "2024-07-01 16:14:24",
-    "createdBy": 1,
-    "id": 1,
-    "productId": "12",
-    "quantity": "20",
-    "updatedAt": "2024-07-01 16:14:24",
-    "updatedBy": 1,
-    "warehouseId": "3"
-  }
 }`}
 />
 

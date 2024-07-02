@@ -200,3 +200,18 @@ export const warehouseAttributes = [
     { type: <code>Array</code>, description: 'This field stores a list of email addresses that should be notified about certain events related to the warehouse.' },
   ],
 ]
+
+export const productWarehouseAttributes = [
+  [
+    'Product ID',
+    { type: <code>Integer</code>, description: <>You can obtain the product ID <Link to="/docs/API/modules/Icommerce/products#get-multiple-products">here</Link>.</> },
+  ],
+  [
+    'Warehouse ID',
+    { type: <code>Integer</code>, description: <>You can obtain the warehouse ID <Link to="/docs/API/modules/Icommerce/warehouse#get-multiple-warehouses">here</Link>.</> },
+  ],
+  [
+    'quantity',
+    { type: <code>Number</code>, description: 'Specify the quantity of the product. Each time you update or add a new quantity, the specified amount will be added to or subtracted from the current inventory of the product. For example, if the product has a quantity of 4 and you add 20, the product will now have 24 units.' },
+  ]
+]

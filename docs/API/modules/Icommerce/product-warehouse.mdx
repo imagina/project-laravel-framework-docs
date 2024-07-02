@@ -1,0 +1,272 @@
+---
+---
+
+import InfoAboutRequest from '../partials/_infoAboutRequest.mdx';
+import Cache from '../partials/_infoAboutCache.mdx';
+import {TableSchema} from '@site/src/components/table/table.jsx';
+import {productWarehouseAttributes} from './scheme/schemeIcommerce.jsx'
+import Api from '@site/src/components/rest/Api';
+
+# Product Warehouse
+
+Use the REST API to interact with the products in the warehouse.
+
+<InfoAboutRequest/>
+<Cache/>
+
+## Add a Product to the Warehouse
+Use this endpoint to create a Warehouse.
+
+<Api
+  method="POST"
+  url="/api/icommerce/v3/product-warehouse"
+  request={`{
+    "attributes": {
+        "product_id": "12",
+        "warehouse_id": "3",
+        "quantity": "20",
+    }
+}`}
+  responseSample={`{{
+  "data": {
+    "createdAt": "2024-07-01 16:14:24",
+    "createdBy": 1,
+    "id": 1,
+    "productId": "12",
+    "quantity": "20",
+    "updatedAt": "2024-07-01 16:14:24",
+    "updatedBy": 1,
+    "warehouseId": "3"
+  }
+}`}
+/>
+
+---
+## Update a Product in the Warehouse
+Use this endpoint to modify a product in the warehouse. You can send one or multiple values in the request.
+
+<Api
+  method="PUT"
+  url="/api/icommerce/v3/product-warehouse/{criteria}"
+  minimum={`{
+  "attributes": {
+    "quantity": "5"
+  }
+}`}
+  request={`{
+    "attributes": {
+        "product_id": "12",
+        "warehouse_id": "1",
+        "quantity": "50",
+    }
+}`}
+  responseSample={`{
+  "data": "Item Updated"
+}`}
+/>
+
+---
+## Get Multiple Products from the Warehouse
+Use this endpoint to retrieve multiple products from the warehouses. You can filter the products or warehouses, paginate them, and include additional data.
+The data that can be included is:
+
+| Include       | Description                      |
+|---------------|----------------------------------|
+| product       | Retrieve associated product      |
+| warehouse     | Retrieve associated warehouse    |
+
+
+`Query Parameters:`
+
+<Api
+  method="GET"
+  url="/api/icommerce/v3/product-warehouse"
+  request={`{
+  "filter": {
+    "order": {
+      "field":"created_at",
+      "way":"desc"
+    }
+  },
+  "page": 1, // Page number of warehouse
+  "take": 1, // Number of warehouse to retrieve
+  "include": 'warehouse,product'
+}`}
+  responseSample={`{
+  "data": [
+    {
+      "createdAt": "2024-07-01 16:14:24",
+      "createdBy": 1,
+      "deletedAt": null,
+      "deletedBy": null,
+      "id": 1,
+      "organizationId": null,
+      "product": {
+        "id": 12,
+        "name": "asda",
+        "slug": "asda",
+        "summary": "asdasd",
+        "metaTitle": "",
+        "metaDescription": "",
+        "options": {
+          "masterRecord": 0,
+          "video": null
+        },
+        "sku": "s667f3596b56ba",
+        "quantity": 10,
+        "price": 0,
+        "formattedPrice": "$0",
+        "minimum": 1,
+        "description": "<p>asdasd</p>",
+        "createdAt": "2024-06-28 17:13:42",
+        "updatedAt": "2024-07-02 10:35:12",
+        "status": 1,
+        "stockStatus": 1,
+        "categoryId": 1,
+        "storeId": null,
+        "featured": "0",
+        "sortOrder": "0",
+        "visible": 0,
+        "url": "/tienda/p/asda",
+        "isCall": "0",
+        "showPriceIsCall": "0",
+        "totalTaxes": 0,
+        "volume": 0,
+        "mediaFiles": {},
+        "isNew": true,
+        "isAvailable": false,
+        "layoutId": null,
+        "isInternal": 0,
+        "advancedSummary": "<p>asdasd</p>",
+        "tags": [],
+        "priceLists": []
+      },
+      "productId": 12,
+      "quantity": 10,
+      "updatedAt": "2024-07-02 10:35:12",
+      "updatedBy": 1,
+      "warehouse": {
+        "address": "calle 123",
+        "cityId": 956,
+        "countryId": 48,
+        "createdAt": "2024-03-15 16:42:18",
+        "createdBy": 2,
+        "default": 0,
+        "deletedAt": null,
+        "deletedBy": null,
+        "description": null,
+        "emailsToNotify": null,
+        "id": 1,
+        "lat": "19.4326296",
+        "lng": "-99.1331785",
+        "options": {
+          "map": {
+            "label": "",
+            "lat": 19.4326296,
+            "lng": -99.1331785
+          }
+        },
+        "organizationId": null,
+        "polygonId": 5,
+        "provinceId": 786,
+        "slug": "test",
+        "status": 1,
+        "title": "test",
+        "updatedAt": "2024-03-15 18:20:58",
+        "updatedBy": 2,
+        "usersToNotify": null
+      },
+      "warehouseId": 1
+    }
+  ],
+  "meta": {
+    "page": {
+      "total": 1,
+      "lastPage": 1,
+      "perPage": "10",
+      "currentPage": 1
+    }
+  }
+}`}
+/>
+
+---
+## Get a Specific Product from the Warehouse
+Use this endpoint to retrieve a specific product from the warehouse.
+
+<Api
+  method="GET"
+  url="/api/icommerce/v3/product-warehouse/{criteria}"
+  request={`{}`}
+  responseSample={`{
+  "data": {
+    "createdAt": "2024-07-01 16:14:24",
+    "createdBy": 1,
+    "deletedAt": null,
+    "deletedBy": null,
+    "id": 1,
+    "organizationId": null,
+    "productId": 12,
+    "quantity": 10,
+    "updatedAt": "2024-07-02 10:35:12",
+    "updatedBy": 1,
+    "warehouse": {
+      "address": "calle 123",
+      "cityId": 956,
+      "countryId": 48,
+      "createdAt": "2024-03-15 16:42:18",
+      "createdBy": 2,
+      "default": 0,
+      "deletedAt": null,
+      "deletedBy": null,
+      "description": null,
+      "emailsToNotify": null,
+      "es": {
+        "title": "test",
+        "slug": "test",
+        "description": null
+      },
+      "id": 1,
+      "lat": "19.4326296",
+      "lng": "-99.1331785",
+      "options": {
+        "map": {
+          "label": "",
+          "lat": 19.4326296,
+          "lng": -99.1331785
+        }
+      },
+      "organizationId": null,
+      "polygonId": 5,
+      "provinceId": 786,
+      "slug": "test",
+      "status": 1,
+      "title": "test",
+      "updatedAt": "2024-03-15 18:20:58",
+      "updatedBy": 2,
+      "usersToNotify": null
+    },
+    "warehouseId": 1
+  }
+}`}
+/>
+
+---
+## Remove a Product from the Warehouse
+Use this endpoint to delete a specific product from the warehouse by sending the ID.
+
+<Api
+  method="DELETE"
+  url="/api/icommerce/v3/product-warehouse/{id}"
+  request={`{}`}
+  responseSample={`{
+  "data": "Request successful"
+}`}
+/>
+
+----
+## Warehouse Fields
+
+<TableSchema columnNames={["Name", "Description"]} data={productWarehouseAttributes}/>
+
+If you need further assistance or have any questions about how to fill out these fields, please don't hesitate to contact our support team.
