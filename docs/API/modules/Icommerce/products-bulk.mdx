@@ -1,0 +1,298 @@
+---
+sidebar_position: 2
+---
+
+import InfoAboutRequest from '../partials/_infoAboutRequest.mdx';
+import Cache from '../partials/_infoAboutCache.mdx';
+
+# Products Bulk
+
+Use the REST API to interact with the products in the application.
+
+<InfoAboutRequest />
+<Cache />
+
+:::info
+  The user must be assigned the permission to: bulk
+:::
+
+## Create Products
+Use this endpoint to general process.
+
+import Api from '@site/src/components/rest/Api';
+
+<Api
+  method="POST"
+  url="/api/icommerce/v3/products/bulk"
+  minimum={`{
+  "items": {
+    "category_id": "1", // This Id is the identification of the categories
+    "en": { // This depends on the server's language
+      "name": "Test",
+      "slug": "test",
+      "summary": "Summary",
+      "description": "Description" // You can use HTML for this field
+    }
+  }
+}`}
+  request={`{
+  "items": {
+    "category_id": "1", // This Id is the identification of the categories
+    "en": { // This depends on the server's language
+      "name": "Test",
+      "slug": "test",
+      "summary": "Summary",
+      "description": "Description" // You can use HTML for this field
+    },
+    "quantity": 9999,
+    "price": "20000",
+    "productWarehouses":[
+        {
+          "warehouse_id": 2,
+          "quantity": 15
+        }
+    ]
+  }
+}`}
+  responseSample={`{
+  "data": {
+      "bulkId": "bulk_675c53516d618",
+      "chunks": 1,
+      "errors": 0,
+      "msjs": []
+  }
+}`}
+/>
+
+---
+
+## Update Products
+<ul>
+  <li>Use the same endpoint</li>
+  <li>The difference is that to update you must send the <strong>product ID</strong></li>
+</ul>
+
+<Api
+  method="POST"
+  url="/api/icommerce/v3/products/bulk"
+  minimum={`{
+  "items": {
+   "id":9999,
+   "category_id": "2"
+  }
+}`}
+  request={`{
+  "items": {
+    "id":9999,
+    "productWarehouses":[
+        {
+          "warehouse_id": 2,
+          "quantity": 15
+        }
+    ]
+  }
+}`}
+  responseSample={`{
+  "data": {
+      "bulkId": "bulk_675c53516d618",
+      "chunks": 1,
+      "errors": 0,
+      "msjs": []
+  }
+}`}
+/>
+
+---
+
+## Bulk Response
+Description of the endpoint response:
+<table>
+  <tr>
+    <td>bulkId</td>
+    <td>General process identifier.</td>
+  </tr>
+  <tr>
+    <td>chunks</td>
+    <td>Number of chunks to be executed.</td>
+  </tr>
+  <tr>
+    <td>errors</td>
+    <td>Number of errors if any occurred.</td>
+  </tr>
+  <tr>
+    <td>msjs</td>
+    <td>Error related messages.</td>
+  </tr>
+</table>
+
+### Example [msjs] error data
+
+```json
+//All error msjs
+"msjs": [
+    {
+      "type": "error",
+      "operation": "create", // Create or Update
+      "msjs": "{\"es.slug\":[\"There are another register with the same slug-locale.\"]}", //Error for this item
+      "item": {} // Item data
+    }
+]
+```
+---
+
+## Relations
+
+### Product Warehouse
+<ul>
+  <li>Relation Name: <strong>productWarehouses</strong></li>
+  <li>You must add in <strong>each item</strong> where you need the information.</li>
+</ul>
+
+Example: <strong>Create</strong> a Product with productWarehouses relation
+```json
+    "items":[
+        {
+            "en": {
+                "name":"Producto x",
+                "slug":"producto-x",
+                "description": "esta es una prueba",
+                "summary":"Esto es una prueba",
+            },
+            "category_id": 1,
+            "quantity": 9999,
+            "price": "20000",
+           "productWarehouses":[
+                {
+                    "warehouse_id": 2,
+                    "quantity": 15
+                }
+            ]
+      }
+  ]
+```
+Example: <strong>Update</strong> an quantity for a product in a warehouse
+```json
+    "items":[
+        {
+            "id": 9999,// Product Id
+            "productWarehouses":[
+                {
+                    "warehouse_id": 2,
+                    "quantity": 20 //Update this quantity
+                }
+            ]
+      }
+  ]
+```
+
+
+---
+
+### Product Discount
+<ul>
+  <li>Relation Name: <strong>discounts</strong></li>
+  <li>You must add in <strong>each item</strong> where you need the information.</li>
+</ul>
+
+Example: <strong>Create</strong> a Product with discount
+
+```json
+    "items":[
+        {
+            "es": {
+                "name":"Producto x",
+                "slug":"producto-x",
+                "description": "esta es una prueba",
+                "summary":"Esto es una prueba",
+            },
+            "category_id": 1,
+            "quantity": 9999,
+            "price": "20000",
+            "discounts":[
+                {
+                    "quantity": 5,
+                    "discount": 5,
+                    "date_start": "2024-12-06",
+                    "date_end": "2024-12-10"
+                }
+            ]
+      }
+  ]
+```
+Example: <strong>Update</strong> a Product with discount
+
+```json
+    "items":[
+        { 
+          "id": 9999,// Product Id
+          "discounts":[
+                {
+                    "quantity": 10,
+                    "discount": 5,
+                    "date_start": "2024-12-06",
+                    "date_end": "2024-12-20" //Update this
+                }
+            ]
+      }
+  ]
+```
+
+:::info
+  <ul>
+    <li>If the product already had a discount, and a new one is sent. The previous one will be deleted and the new one will be added.</li>
+    <li>If the product already had a discount, and another discount is being added and you want to maintain the previous one. Both discounts must be submitted</li>
+  </ul>
+:::
+
+---
+
+## Webhook
+
+<ul>
+  <li>Every time a chunk process completes (Job), a Post Request will be sent with the result.</li>
+  <li>The url must be provided to the support team.</li>
+</ul>
+
+Response Body Example:
+```json
+    {
+        "chunkId": "bulk_675c53516d618_0",
+        "partition": 0,
+        "totalItems": 1,
+        "completed": 1,
+        "errors": 0,
+        "msjs": []
+    }
+```
+
+<table>
+  <tr>
+    <td>chunkId</td>
+    <td>chunk identifier |  It is composed of the bulkId and partition.</td>
+  </tr>
+  <tr>
+    <td>partition</td>
+    <td>Number of the partition that was executed. (starts at 0)</td>
+  </tr>
+  <tr>
+    <td>totalItems</td>
+    <td>Total items that were attempted to be processed</td>
+  </tr>
+  <tr>
+    <td>completed</td>
+    <td>Total items successfully processed</td>
+  </tr>
+  <tr>
+    <td>errors</td>
+    <td>Number of errors if any occurred.</td>
+  </tr>
+  <tr>
+    <td>msjs</td>
+    <td>Error related messages.</td>
+  </tr>
+</table>
+
+---
+
+
+If you need further assistance or have any questions about how to fill out these fields, please don't hesitate to contact our support team.
