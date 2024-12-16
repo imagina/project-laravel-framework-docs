@@ -25,34 +25,37 @@ import Api from '@site/src/components/rest/Api';
   method="POST"
   url="/api/icommerce/v3/products/bulk"
   minimum={`{
-  "items": {
-    "category_id": "1", // This Id is the identification of the categories
-    "en": { // This depends on the server's language
-      "name": "Test",
-      "slug": "test",
-      "summary": "Summary",
-      "description": "Description" // You can use HTML for this field
+  "items":[
+    {
+      "category_id": "1", // This Id is the identification of the categories
+      "en": { // This depends on the server's language
+        "name": "Test",
+        "slug": "test",
+        "summary": "Summary",
+        "description": "Description" // You can use HTML for this field
     }
-  }
+  ]
 }`}
   request={`{
-  "items": {
-    "category_id": "1", // This Id is the identification of the categories
-    "en": { // This depends on the server's language
-      "name": "Test",
-      "slug": "test",
-      "summary": "Summary",
-      "description": "Description" // You can use HTML for this field
-    },
-    "quantity": 9999,
-    "price": "20000",
-    "productWarehouses":[
-        {
-          "warehouse_id": 2,
-          "quantity": 15
-        }
-    ]
-  }
+  "items":[
+    {
+      "category_id": "1", // This Id is the identification of the categories
+      "en": { // This depends on the server's language
+        "name": "Test",
+        "slug": "test",
+        "summary": "Summary",
+        "description": "Description" // You can use HTML for this field
+      },
+      "quantity": 9999,
+      "price": "20000",
+      "productWarehouses":[
+          {
+            "warehouse_id": 2,
+            "quantity": 15
+          }
+      ]
+    }
+  ]
 }`}
   responseSample={`{
   "data": {
@@ -76,21 +79,25 @@ import Api from '@site/src/components/rest/Api';
   method="POST"
   url="/api/icommerce/v3/products/bulk"
   minimum={`{
-  "items": {
-   "id":9999,
-   "category_id": "2"
-  }
+  "items":[
+    {
+      "id":9999,
+      "category_id": "2"
+    }
+  ]
 }`}
   request={`{
-  "items": {
-    "id":9999,
-    "productWarehouses":[
-        {
-          "warehouse_id": 2,
-          "quantity": 15
-        }
-    ]
-  }
+  "items":[
+    {
+      "id":9999,
+      "productWarehouses":[
+          {
+            "warehouse_id": 2,
+            "quantity": 15
+          }
+      ]
+    }
+  ]
 }`}
   responseSample={`{
   "data": {
