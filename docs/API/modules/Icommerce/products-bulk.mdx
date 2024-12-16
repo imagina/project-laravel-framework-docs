@@ -19,7 +19,7 @@ Use the REST API to interact with the products in the application.
   The user must be assigned the permission to: 'bulk' => 'icommerce::products.bulk resource',
 :::
 
-![Clear cache](./../../../../static/img/permission-bulk.jpg)
+![Clear cache](./../../../../static/img/bulk/permission.jpg)
 
 </details>
 
@@ -267,6 +267,43 @@ Example: <strong>Update</strong> a Product with discount
   <li>The url must be provided to the support team.</li>
 </ul>
 
+### Create
+- Go to Iadmin->Menu->Webhook
+- Create a Category. Example:
+![Clear cache](./../../../../static/img/bulk/webhook-category.jpg)
+- Create a hook:
+![Clear cache](./../../../../static/img/bulk/create-hook.jpg)
+
+Information with which the hook must be created:
+
+<table>
+  <tr>
+    <td>Method HTTP</td>
+    <td>select "POST"</td>
+  </tr>
+  <tr>
+    <td>URL</td>
+    <td>Add URL where the information will be sent.</td>
+  </tr>
+  <tr>
+    <td>Category</td>
+    <td>Select a category.</td>
+  </tr>
+  <tr>
+    <td>Type</td>
+    <td>Select "Event".</td>
+  </tr>
+  <tr>
+    <td>Entity</td>
+    <td>Select "Product".</td>
+  </tr>
+  <tr>
+    <td>Event</td>
+    <td>Select "Bulk".</td>
+  </tr>
+</table>
+
+### Response
 Response Body Example:
 ```json
     {
