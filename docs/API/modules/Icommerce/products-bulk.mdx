@@ -7,10 +7,22 @@ import Cache from '../partials/_infoAboutCache.mdx';
 
 # Products Bulk
 
+## Information 
 Use the REST API to interact with the products in the application.
 
 <InfoAboutRequest />
 <Cache />
+
+<details>
+<summary>How to check the response for each chunk that has been executed?</summary>
+
+:::info
+ To view the response of each chunk, you must create a webhook. Visit this <strong>[section](#webhook)</strong>
+:::
+
+</details>
+
+## Configurations
 
 <details>
 <summary>Permissions</summary>
@@ -24,10 +36,10 @@ Use the REST API to interact with the products in the application.
 </details>
 
 <details>
-<summary>How to check the response for each chunk that has been executed?</summary>
+<summary>Server Queue</summary>
 
 :::info
- To view the response of each chunk, you must create a webhook. Visit this <strong>[section](#webhook)</strong>
+ The queue on the server must be configured with the name: <strong>bulk</strong>
 :::
 
 </details>
